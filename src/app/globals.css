@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #f7f4ee;
+  --foreground: #17211f;
+  --section-bg: #f3efe3;
+  --section-fg: #191919;
+  --card-bg: #ffffff;
+  --muted-fg: #706b62;
+  --line: rgb(25 25 25 / 0.1);
+}
+
+html.dark,
+html[data-theme="dark"] {
+  --background: #0f1115;
+  --foreground: #f5efe3;
+  --section-bg: #0f1115;
+  --section-fg: #f5efe3;
+  --card-bg: #171b22;
+  --muted-fg: rgb(245 239 227 / 0.68);
+  --line: rgb(255 255 255 / 0.1);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+html {
+  color-scheme: light;
+  scroll-behavior: smooth;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  overflow-x: hidden;
+  transition:
+    background-color 500ms ease,
+    color 500ms ease;
+}
+
+.theme-section {
+  transition:
+    background-color 500ms ease,
+    color 500ms ease,
+    border-color 500ms ease;
+}
+
+html.dark body,
+html[data-theme="dark"] body {
+  background: #0f1115;
+  color: #f5efe3;
+}
+
+html.dark main,
+html[data-theme="dark"] main {
+  background: #0f1115 !important;
+  color: #f5efe3 !important;
+}
+
+html.dark .theme-section,
+html[data-theme="dark"] .theme-section {
+  background-color: #0f1115 !important;
+  border-color: rgb(255 255 255 / 0.1) !important;
+  color: #f5efe3;
+}
+/* 
+html.dark .theme-section :where(h1, h2, h3, p, span, strong, a, label, button),
+html[data-theme="dark"] .theme-section :where(h1, h2, h3, p, span, strong, a, label, button) {
+  color: inherit;
+} */
+
+html.dark .theme-section [class*="bg-white"],
+html.dark .theme-section [class*="bg-[#f7f5ef]"],
+html.dark .theme-section [class*="bg-[#fafafa]"],
+html.dark .theme-section [class*="bg-[#eff4f3]"],
+html.dark .theme-section [class*="bg-[#fff7ed]"],
+html[data-theme="dark"] .theme-section [class*="bg-white"],
+html[data-theme="dark"] .theme-section [class*="bg-[#f7f5ef]"],
+html[data-theme="dark"] .theme-section [class*="bg-[#fafafa]"],
+html[data-theme="dark"] .theme-section [class*="bg-[#eff4f3]"],
+html[data-theme="dark"] .theme-section [class*="bg-[#fff7ed]"] {
+  background-color: #171b22 !important;
+  color: #f5efe3;
+}
+
+html.dark .theme-section [class*="text-[#706b62]"],
+html.dark .theme-section [class*="text-[#62605a]"],
+html.dark .theme-section [class*="text-[#777168]"],
+html.dark .theme-section [class*="text-[#5f5b52]"],
+html.dark .theme-section [class*="text-[#68645b]"],
+html.dark .theme-section [class*="text-[#77736a]"],
+html.dark .theme-section [class*="text-[#8a857c]"],
+html[data-theme="dark"] .theme-section [class*="text-[#706b62]"],
+html[data-theme="dark"] .theme-section [class*="text-[#62605a]"],
+html[data-theme="dark"] .theme-section [class*="text-[#777168]"],
+html[data-theme="dark"] .theme-section [class*="text-[#5f5b52]"],
+html[data-theme="dark"] .theme-section [class*="text-[#68645b]"],
+html[data-theme="dark"] .theme-section [class*="text-[#77736a]"],
+html[data-theme="dark"] .theme-section [class*="text-[#8a857c]"] {
+  color: rgb(245 239 227 / 0.68) !important;
+}
+
+html.dark .theme-section input,
+html.dark .theme-section textarea,
+html.dark .theme-section select,
+html[data-theme="dark"] .theme-section input,
+html[data-theme="dark"] .theme-section textarea,
+html[data-theme="dark"] .theme-section select {
+  background-color: #10141a;
+  border-color: rgb(255 255 255 / 0.22);
+  color: #f5efe3;
+}
+
+html.dark .theme-section input::placeholder,
+html.dark .theme-section textarea::placeholder,
+html[data-theme="dark"] .theme-section input::placeholder,
+html[data-theme="dark"] .theme-section textarea::placeholder {
+  color: rgb(245 239 227 / 0.45);
+}
+
+::selection {
+  background: #f2c94c;
+  color: #17211f;
+}
