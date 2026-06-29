@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Check, Clock3, Menu, Megaphone, RefreshCw } from "lucide-react";
-
+import TaxCalculator from "./TaxCalculator";
 const leads = [
   ["Paul", "Contacted", "paul.bj@gmail.com"],
   ["Mike", "Tour Complete", "mike.t90@hotmail.com"],
@@ -111,81 +111,52 @@ function PredictiveCard() {
       transition={{ duration: 0.5, delay: 0.12 }}
     >
       <h3 className="text-[16px] font-semibold leading-tight">
-        Predictive Enrollment
+       Predictive Tax Planning
       </h3>
       <p className="mt-4 max-w-[250px] text-[13px] leading-5 text-[#706b62]">
-        Forecast future openings and maximize capacity with smart planning
-        tools.
+      Plan your taxes before the year ends, not after. We forecast your liability and maximize savings with smart, proactive strategies.
       </p>
 
-      <div className="mx-auto mt-11 max-w-[190px]">
-        <div className="mb-3 flex items-center gap-3 opacity-45">
-          <div className="size-7 rounded-full bg-[#d6b39a]" />
-          <div>
-            <p className="text-[10px] font-semibold">Ariel Pinal</p>
-            <p className="text-[9px] text-[#8b857c]">4 yr 9 mo</p>
-          </div>
-        </div>
-        <div className="flex items-center gap-3 rounded-md border border-[#ddd7cc] bg-white p-2 shadow-sm">
-          <div className="size-8 rounded-full bg-[#f1c28f]" />
-          <div className="min-w-0 flex-1">
-            <p className="text-[11px] font-semibold">Adrian Moore</p>
-            <p className="text-[9px] text-[#8b857c]">2 yr 2 mo</p>
-          </div>
-          <RefreshCw size={13} className="text-[#ff684d]" />
-        </div>
+  
+ <TaxCalculator />
 
-        <p className="mt-4 flex items-center gap-2 text-[12px] font-semibold">
-          <RefreshCw size={14} className="text-[#1ba6da]" />
-          2 upcoming spots
-        </p>
-        {[["Upcoming spot", "From Jul 3, 2025"], ["Upcoming spot", "From Aug 4, 2025"]].map(
-          ([title, date]) => (
-            <div
-              className="mt-2 flex items-center gap-3 rounded-md border border-[#ddd7cc] bg-white p-3"
-              key={date}
-            >
-              <span className="grid size-7 place-items-center rounded-full bg-[#f3f0e8]">
-                <Clock3 size={13} />
-              </span>
-              <div>
-                <p className="text-[11px] font-semibold">{title}</p>
-                <p className="text-[9px] text-[#706b62]">{date}</p>
-              </div>
-            </div>
-          ),
-        )}
-      </div>
     </motion.article>
   );
 }
-
 function WebsitePreview() {
+  const checklist = [
+    "Invest in 80C",
+    "Health Insurance",
+    "Claim HRA",
+    "NPS Benefits",
+  ];
+
   return (
-    <div className="mx-auto mt-9 w-[205px] overflow-hidden rounded-t-[14px] border-[6px] border-[#e7e1d6] bg-white">
-      <div className="flex items-center justify-between px-4 py-3 text-[12px] font-bold">
-        <span className="font-serif italic">Robin Nest</span>
-        <Menu size={14} />
-      </div>
-      <div className="px-4 pb-6 text-center">
-        <span className="rounded-full border border-[#ff9a78] px-3 py-1 text-[9px] font-semibold text-[#ff684d]">
-          Enrollment is open
-        </span>
-        <h4 className="mt-4 text-[18px] font-semibold leading-tight">
-          Welcome to
-          <br />
-          The Robin Nest
+    <div className="mx-auto mt-9 w-[205px] overflow-hidden rounded-[14px] border-[6px] border-[#e7e1d6] bg-white">
+      <div className="px-4 py-4">
+        <h4 className="text-[14px] font-bold leading-tight">
+          Tax Planning Checklist
         </h4>
-        <p className="mt-3 text-[9px] leading-4 text-[#8b857c]">
-          We create and maintain a safe, supportive, and nurturing learning
-          environment for all children and families.
+
+        <p className="mt-2 text-[9px] leading-4 text-[#8b857c]">
+          Complete these steps to maximize your tax savings.
         </p>
-        <div className="mx-auto mt-5 h-24 w-32 rounded-t-full bg-[#ffe1b8]" />
+
+        <div className="mt-4 space-y-2">
+          {checklist.map((item) => (
+            <div
+              key={item}
+              className="flex items-center gap-2 rounded-md border border-[#ece7dd] px-2 py-2"
+            >
+              <input type="checkbox" className="h-3 w-3" />
+              <span className="text-[10px] font-medium">{item}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
 }
-
 function EnrollmentForm() {
   return (
     <div className="rounded-[6px] bg-white p-6 shadow-[0_10px_24px_rgba(28,22,12,0.08)] lg:w-[250px]">
@@ -221,7 +192,43 @@ function EnrollmentForm() {
     </div>
   );
 }
+function TaxChecklistCard() {
+  const items = [
+    "Invest in 80C",
+    "Claim HRA",
+    "Health Insurance",
+    "NPS Benefits",
+  ];
 
+  return (
+    <div className="rounded-[6px] bg-white p-5 shadow-[0_10px_24px_rgba(28,22,12,0.08)] lg:w-[250px]">
+      <div className="flex items-center justify-between">
+        <h4 className="text-[13px] font-semibold text-[#706b62]">
+          Tax Checklist
+        </h4>
+
+        <span className="rounded bg-[#e8fff1] px-2 py-1 text-[10px] font-semibold text-green-600">
+          Active
+        </span>
+      </div>
+
+      <div className="mt-5 space-y-3">
+        {items.map((item) => (
+          <div key={item} className="flex items-center gap-2 text-[12px]">
+            <span className="grid size-5 place-items-center rounded bg-green-500 text-white">
+              ✓
+            </span>
+            {item}
+          </div>
+        ))}
+      </div>
+
+    <div className="mt-6 rounded bg-gray-100 p-3 text-[11px] text-gray-700 dark:bg-gray-800 dark:text-gray-200">
+  3 / 4 tasks completed
+</div>
+    </div>
+  );
+}
 export function MarketingSection() {
   return (
     <section className="theme-section border-b border-[#191919]/10 bg-[#f3efe3] px-5 py-16 sm:px-8 sm:py-20">
@@ -235,14 +242,14 @@ export function MarketingSection() {
         >
           <p className="inline-flex items-center gap-1 text-xs font-semibold text-[#ff6148]">
             <Megaphone size={14} />
-            Marketing
+            Our Advantage
           </p>
           <h2 className="mx-auto mt-4 max-w-xl text-4xl font-semibold leading-[0.95] tracking-normal sm:text-5xl">
-            Make your marketing as good as the big brands
+          Never let a tax deadline or compliance gap hurt your business
           </h2>
           <p className="mx-auto mt-4 max-w-sm text-sm leading-5 text-[#706b62]">
-            Easy marketing automations right on your website. Capture more
-            leads, grow your enrollment.
+           Complete financial management right at your fingertips from GST filings to audit reports, all handled by experts.
+
           </p>
         </motion.div>
 
@@ -257,16 +264,16 @@ export function MarketingSection() {
             <div className="grid min-h-[306px] gap-8 p-7 lg:grid-cols-[0.95fr_1.05fr]">
               <div>
                 <h3 className="max-w-[235px] text-[16px] font-semibold leading-tight">
-                  Don&apos;t let another lead slip through the cracks
+                
+                   Don't let a compliance deadline slip through the cracks
                 </h3>
                 <p className="mt-4 max-w-[260px] text-[13px] leading-5 text-[#706b62]">
-                  Capture interested families, track all interactions, and scale
-                  enrollment - at one location or across 100s
+               We track all your GST, Income Tax, and audit deadlines — so you never face penalties or last-minute stress.
                 </p>
                 <div className="mt-10">
                   <PaperNote
-                    quote="I no longer worry about not getting back to interested families in time"
-                    author="Jermaine Rucker, Owner at Little Minds Universe"
+                    quote="I no longer worry about missing deadlines. SNAP & Associates handles everything on time, every time."
+                    author="-Business Owner, Retail Firm, Surat"
                   />
                 </div>
               </div>
@@ -286,11 +293,10 @@ export function MarketingSection() {
             transition={{ duration: 0.5 }}
           >
             <h3 className="max-w-[220px] text-[16px] font-semibold leading-tight">
-              Child care websites built for enrollment
+              Financial advisory built for business growth
             </h3>
             <p className="mt-4 max-w-[250px] text-[13px] leading-5 text-[#706b62]">
-              Playground builds your website to drive enrollment. Our proven
-              design grows Google traffic, and beats your competition.
+            Plan your taxes before the year ends, not after. We forecast your liability and maximize savings with smart, proactive strategies.
             </p>
             <WebsitePreview />
           </motion.article>
@@ -304,21 +310,22 @@ export function MarketingSection() {
           >
             <div className="grid gap-7 p-7 lg:grid-cols-[0.92fr_1fr]">
               <div>
-                <h3 className="text-[16px] font-semibold">Less paper, less work</h3>
-                <p className="mt-4 max-w-[300px] text-[13px] leading-5 text-[#706b62]">
-                  Say goodbye to paper - and much of the work - with fully
-                  digital registration packets that autofill repetitive
-                  information.
-                </p>
-                <div className="mt-7">
-                  <PaperNote
-                    quote="Our parents jumped for joy when they saw the online paperwork packet."
-                    author="Carrie Hoffman, Office Manager at The Acorn"
-                  />
-                </div>
+             <h3 className="text-[16px] font-semibold">Smart tax planning made simple</h3>
+
+<p className="mt-4 max-w-[300px] text-[13px] leading-5 text-[#706b62]">
+  Stay ahead of deadlines and maximize deductions with a simple tax planning
+  checklist designed for individuals and businesses.
+</p>
+
+<div className="mt-7">
+  <PaperNote
+    quote="I reduced last-minute tax stress and saved more with structured planning."
+    author="Rahul Sharma, Business Owner"
+  />
+</div>
               </div>
               <div className="flex items-start justify-center lg:justify-end">
-                <EnrollmentForm />
+                <TaxChecklistCard />
               </div>
             </div>
           </motion.article>
