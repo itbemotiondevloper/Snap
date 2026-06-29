@@ -41,127 +41,111 @@ function Counter({
 }
 
 const metrics = [
+  { value: 10, suffix: "+", label: "Years in Practice" },
+  { value: 500, suffix: "+", label: "Clients Served" },
+  { value: 2, suffix: "", label: "Expert CA Partners" },
+];
+
+const cards = [
   {
-    value: 100,
-    suffix: "M+",
-    label: "Monthly open source downloads",
+    title: "Founder-led. Built with operators.",
+    name: "CA Sagar Gotawala",
+    role: "Co-Founder",
+    desc:
+      "SNAP & Associates was founded by CA Sagar Gotawala & CA Aakash Bagrecha, both qualified Chartered Accountants since 2014. Over the past decade, the firm has built a reputation for delivering honest, expert, and personalized financial services to businesses across Surat.",
   },
   {
-    value: 6,
-    suffix: "K+",
-    label: "Active LangSmith customers",
-  },
-  {
-    value: 5,
-    suffix: "",
-    label: "Of the Fortune 10",
+   title: "Strategic vision. Trusted advice.",
+    name: "CA Aakash Bagrecha",
+    role: "Co-Founder",
+    desc:
+      "SNAP & Associates was founded by CA Sagar Gotawala & CA Aakash Bagrecha, both qualified Chartered Accountants since 2014. Over the past decade, the firm has built a reputation for delivering honest, expert, and personalized financial services to businesses across Surat.",
   },
 ];
 
 export function CommunitySection() {
-  return (
-   <section className="theme-section relative overflow-hidden border-y border-[#191919]/10 dark:border-white/10 bg-[#f3efe3] dark:bg-[#050814] px-4 pb-12 pt-8 sm:px-8 sm:pb-20 lg:px-10">
-      <div className="pointer-events-none absolute inset-y-0 left-[15.5%] hidden w-px bg-[#191919]/8 dark:bg-white/10 lg:block" />
-      <div className="pointer-events-none absolute inset-y-0 right-[18.5%] hidden w-px bg-[#191919]/8 dark:bg-white/10 lg:block" />
-      <div className="pointer-events-none absolute left-0 right-0 top-[205px] hidden h-px bg-[#191919]/8 dark:bg-white/10 lg:block" />
+  const [activeCard, setActiveCard] = useState(0);
+useEffect(() => {
+  const interval = setInterval(() => {
+    setActiveCard((prev) => (prev + 1) % cards.length);
+  }, 1000); // changes every 4 sec
 
+  return () => clearInterval(interval);
+}, []);
+  return (
+    <section className="theme-section relative overflow-hidden border-y border-[#191919]/10 bg-[#f3efe3] px-4 pb-12 pt-8 sm:px-8 sm:pb-20 lg:px-10">
       <div className="mx-auto max-w-[900px]">
         <motion.h2
-          className="max-w-[560px] text-[30px] leading-tight font-normal tracking-normal text-[#171717] dark:text-white sm:text-[42px] md:text-[52px]"
+       className="max-w-[560px] text-[30px] sm:text-[42px] md:text-[52px] font-semibold leading-[1.08] tracking-tight text-[#171717] dark:text-white"
           initial={{ opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.45 }}
-          transition={{ duration: 0.6 }}
         >
-          Trusted by the largest builder community in AI
+          Financial Clarity. Strategic Growth.
         </motion.h2>
 
         <motion.div
           className="mt-10 grid grid-cols-3 gap-3 sm:mt-[68px] sm:grid-cols-[1.05fr_1.05fr_0.8fr] sm:gap-[108px]"
           initial={{ opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
         >
           {metrics.map((metric) => (
-            <div
-              className="group transition duration-300 hover:-translate-y-1"
-              key={metric.label}
-            >
-            <strong className="block text-[28px] leading-none font-normal text-[#111] dark:text-white sm:text-[62px]">
+            <div key={metric.label}>
+              <strong className="block text-[28px] sm:text-[62px]">
                 <Counter target={metric.value} suffix={metric.suffix} />
               </strong>
 
-             <span className="mt-1 block text-[9px] leading-tight text-[#62605a] dark:text-gray-400 sm:max-w-36 sm:text-[11px]">
+              <span className="mt-1 block text-[9px] sm:text-[11px]">
                 {metric.label}
               </span>
             </div>
           ))}
         </motion.div>
 
-        <div className="grid gap-8 pt-7 md:grid-cols-[350px_1fr] md:gap-[64px]">
-          <motion.div
-           className="mx-auto w-full max-w-[287px] overflow-hidden rounded-md bg-[#c7a78e] dark:bg-[#111827] md:ml-[48px] md:w-[287px]"
-            initial={{ opacity: 0, x: -28 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.35 }}
-            transition={{ duration: 0.65 }}
-            whileHover={{ scale: 1.015 }}
-          >
-            <Image
-              src="/founder-portrait.png"
-              alt="Founder portrait"
-              width={360}
-              height={360}
-           className="h-full w-full object-cover object-top"
-            />
-          </motion.div>
-
-          <motion.article
-            className="max-w-full md:max-w-[430px]"
-            initial={{ opacity: 0, x: 28 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.35 }}
-            transition={{ duration: 0.65, delay: 0.08 }}
-          >
-            <h3 className="text-[24px] font-medium leading-[1.18] tracking-normal text-[#242424] dark:text-white sm:text-[30px]">
-              Founder-led. Built with operators. Backed by the best.
-            </h3>
-
-            <div className="mt-6 space-y-5 text-[12px] leading-[1.55] text-[#62605a] dark:text-gray-300">
-              <p>
-                Reflow is built by a team of operators, product leaders, and
-                partners, led by repeat founder Ugur Kaner. He previously
-                co-founded Collective, a category-defining startup backed by
-                General Catalyst, Google&apos;s Gradient Ventures, Expa, and
-                Ashton Kutcher.
-              </p>
-
-              <p>
-                Today, we&apos;re building the system of record for enterprise
-                operations, giving teams the visibility, automation, and
-                measurable ROI needed to operate with leverage in the age of AI.
-              </p>
-
-              <p>
-                We&apos;re building Reflow with operators and partners from
-                Collective, Boundless, Proper, alongside world-class investors,
-                including Bling, Basis Set, BTV, E2 and more.
-              </p>
+        {/* Carousel */}
+        <div className="pt-12">
+          <div className="grid gap-8 md:grid-cols-[350px_1fr] md:gap-[64px]">
+            <div className="mx-auto w-full max-w-[287px] overflow-hidden rounded-md bg-[#c7a78e]">
+              <Image
+                src="/founder-portrait.png"
+                alt="Founder"
+                width={360}
+                height={360}
+                className="h-full w-full object-cover object-top"
+              />
             </div>
 
-            <div className="mt-11 flex justify-start md:justify-end">
-              <div className="text-left md:text-right">
-                <p className="font-serif text-[32px] italic leading-none text-[#2b2b2b] dark:text-white sm:text-[42px]">
-                  Ugur Kaner
-                </p>
+            <article className="rounded-2xl p-8">
+              <h3 className="text-[24px] sm:text-[30px]">
+                {cards[activeCard].title}
+              </h3>
 
-                <p className="mt-4 text-[9px] font-semibold uppercase tracking-[0.2em] text-[#77736a] dark:text-gray-400">
-                  Founder, Reflow
+              <p className="mt-6 text-[12px] leading-6">
+                {cards[activeCard].desc}
+              </p>
+
+              <div className="mt-11 text-right">
+                <p className="font-serif text-[42px] italic">
+                  {cards[activeCard].name}
+                </p>
+                <p className="mt-4 text-[9px] uppercase">
+                  {cards[activeCard].role}
                 </p>
               </div>
-            </div>
-          </motion.article>
+            </article>
+          </div>
+
+          {/* Dots */}
+          <div className="mt-6 flex justify-center gap-3">
+            {cards.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setActiveCard(index)}
+                className={`h-3 w-3 rounded-full ${
+                  activeCard === index ? "bg-black" : "bg-gray-400"
+                }`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>

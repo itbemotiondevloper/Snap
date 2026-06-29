@@ -69,7 +69,7 @@ export function HeroSection() {
 
       {/* Hero Content */}
       <div className="relative z-10 mx-auto flex min-h-[100dvh] w-full max-w-7xl flex-col items-center justify-center px-4 sm:px-6 md:px-10 lg:px-16 pt-16 pb-10 text-center">
-      <motion.h1
+   <motion.h1
   className="
     -mt-24
     md:-mt-16
@@ -77,24 +77,25 @@ export function HeroSection() {
     max-w-[95%]
     sm:max-w-4xl
     lg:max-w-5xl
-    text-[30px]
-    sm:text-[48px]
-    md:text-[72px]
-    lg:text-[88px]
+    text-[22px]
+    sm:text-[36px]
+    md:text-[52px]
+    lg:text-[64px]
     leading-[1.05]
     font-light
     tracking-tight
     text-white
     drop-shadow-[0_8px_22px_rgba(0,0,0,0.35)]
   "
+
   initial={{ opacity: 0, y: 18 }}
   animate={{ opacity: 1, y: 0 }}
   transition={{ duration: 0.7, delay: 0.15 }}
 >
-  <span className="font-medium block">The Intelligent</span>
+  <span className="font-medium block"> Your Trusted Financial</span>
 
   <span className="inline-block mt-1 border-b border-white/70 text-white/80">
-    File Browser
+    Partners in Surat
   </span>
 </motion.h1>
 
@@ -115,8 +116,8 @@ export function HeroSection() {
   animate={{ opacity: 1, y: 0 }}
   transition={{ duration: 0.7, delay: 0.28 }}
 >
-  Store, browse, research, and organize your files with AI,
-  available on web and desktop.
+  SNAP & Associates Chartered Accountants specializing in Audit, Taxation & Financial Advisory. Helping businesses and individuals grow with clarity and confidence.
+
 </motion.p>
 
         {/* Loader */}
@@ -134,7 +135,7 @@ export function HeroSection() {
           />
 
           <p className="text-[10px] sm:text-xs text-white/75">
-            Loading experience...
+           Get a Free Consultation...
           </p>
         </motion.div>
       </div>

@@ -6,29 +6,48 @@ import { Plus } from "lucide-react";
 
 const categories = [
   "General",
-  "Alerts",
-  "Reports",
-  "Exports",
-  "API",
-  "Media monitoring",
+  "Taxation",
+  "GST",
+  "Loans",
+  "Industries",
 ];
 
 const faqs = [
-  "What is Determ?",
-  "How does Determ differ from other media monitoring tools?",
-  "What sources does Determ monitor?",
-  "Can I add more sources to monitor?",
-  "What languages does Determ monitor?",
+  {
+    question: "What services does SNAP & Associates offer?",
+    answer:
+      "We offer Audit, Direct & Indirect Taxation, GST services, Financial Advisory, Retail & Project Financing, and Accounting.",
+  },
+  {
+    question: "Who are the partners at the firm?",
+    answer:
+      "CA Sagar Gotawala and CA Aakash Bagrecha — both qualified Chartered Accountants since 2014 with 10+ years of professional practice.",
+  },
+  {
+    question: "Do you help with GST registration and filing?",
+    answer:
+      "Yes, we handle end-to-end GST services including registration, return filing, audits, and appeals.",
+  },
+  {
+    question: "Can you assist with home loans or business funding?",
+    answer:
+      "Absolutely. We assist individuals and businesses in securing loans from nationalized banks, private banks, co-operative banks, and NBFCs.",
+  },
+  {
+    question: "Which industries do you serve?",
+    answer:
+      "We serve Retail, Manufacturing, Real Estate, Pharma, Financial Services, Co-operative Societies, and many more industries.",
+  },
 ];
 
 export function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="theme-section border-b border-[#191919]/10 dark:border-white/10 bg-[#f3efe3] dark:bg-[#050814] px-4 py-12 sm:px-8 sm:py-20">
+    <section className="theme-section border-b border-[#191919]/10 bg-[#f8f4eb] dark:bg-[#050814] px-4 py-12 sm:px-8 sm:py-20">
       <div className="mx-auto max-w-[940px]">
         <motion.h2
-          className="text-[34px] sm:text-5xl lg:text-6xl font-semibold leading-none tracking-normal text-[#191919] dark:text-white"
+         className="text-[34px] sm:text-5xl lg:text-6xl font-semibold leading-none tracking-tight text-[#191919] dark:text-white"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.45 }}
@@ -38,7 +57,7 @@ export function FAQSection() {
         </motion.h2>
 
         {/* Categories */}
-        <motion.div
+        {/* <motion.div
           className="mt-6 flex flex-wrap gap-2"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -50,41 +69,41 @@ export function FAQSection() {
               type="button"
               className={`rounded-full border px-3 py-2 text-[10px] sm:text-[11px] font-semibold uppercase transition-all duration-300 hover:scale-105 ${
                 index === 0
-                  ? "border-[#191919] bg-[#191919] text-white dark:border-white dark:bg-white dark:text-black"
-                  : "border-[#191919] text-[#191919] dark:border-white/30 dark:text-white"
+                  ? "border-[#191919] bg-[#191919] text-white"
+                  : "border-[#191919] text-[#191919]"
               }`}
             >
               {category}
             </button>
           ))}
-        </motion.div>
+        </motion.div> */}
 
-        {/* FAQ */}
+        {/* FAQ Items */}
         <div className="mt-8 sm:mt-9">
-          {faqs.map((question, index) => (
+          {faqs.map((faq, index) => (
             <motion.div
-              key={question}
-              className="border-b border-[#191919]/10 dark:border-white/10"
+              key={faq.question}
+             className="mb-4 overflow-hidden rounded-2xl border border-black/10 bg-white/70 backdrop-blur-sm shadow-sm transition-all duration-300 hover:shadow-md dark:border-white/10 dark:bg-white/5"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.08 }}
             >
               <button
-                className="flex w-full items-center justify-between gap-4 sm:gap-6 py-5 sm:py-7 text-left text-[16px] sm:text-lg md:text-xl font-medium text-[#191919] dark:text-white"
+                className="flex w-full items-center justify-between gap-4 px-5 py-5 sm:px-7 sm:py-6 text-left text-[16px] sm:text-lg md:text-xl font-medium text-[#191919] dark:text-white"
                 onClick={() =>
                   setOpenIndex(openIndex === index ? null : index)
                 }
                 type="button"
               >
-                <span>{question}</span>
+                <span>{faq.question}</span>
 
                 <motion.span
                   animate={{ rotate: openIndex === index ? 45 : 0 }}
                   transition={{ duration: 0.3 }}
-                  className="grid h-8 w-8 sm:size-9 shrink-0 place-items-center rounded-full bg-[#e7f2fb] dark:bg-[#1b2435]"
+                  className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#ede7ff] dark:bg-[#2a2340]"
                 >
-                  <Plus size={16} className="text-black dark:text-white" />
+                  <Plus size={16} className="text-black" />
                 </motion.span>
               </button>
 
@@ -97,9 +116,8 @@ export function FAQSection() {
                     transition={{ duration: 0.35 }}
                     className="overflow-hidden"
                   >
-                    <p className="max-w-xl pb-6 sm:pb-7 text-[13px] sm:text-sm leading-6 text-[#706b62] dark:text-gray-400">
-                      Determ helps teams track, understand, and respond to
-                      important media signals from one organized workspace.
+                  <p className="max-w-3xl px-5 pb-6 sm:px-7 sm:pb-7 text-[13px] sm:text-sm leading-7 text-[#5e584f] dark:text-gray-300">
+                      {faq.answer}
                     </p>
                   </motion.div>
                 )}

@@ -6,43 +6,43 @@ import { motion } from "framer-motion";
 const testimonials = [
   {
     quote:
-      "Highnote is far more than a technology provider; they are a partner that accelerates our growth.",
-    name: "Vlad Sadovskiy",
-    role: "CEO",
-    company: "NETEVIA",
-    avatar: "/avatar-vlad.png",
+      "SNAP & Associates made our GST compliance completely stress-free. Their team is always available and extremely knowledgeable.",
+    name: "Rajesh Mehta",
+    role: "Director",
+    company: "Retail Manufacturing Firm",
+    avatar: "/avatar-1.png",
   },
   {
     quote:
-      "Highnote is far more than a technology provider; they are a partner that accelerates our growth.",
-    name: "Vlad Sadovskiy",
-    role: "CEO",
-    company: "NETEVIA",
-    avatar: "/avatar-vlad.png",
+      "CA Aakash helped us restructure our internal controls. The difference in our audit results was remarkable.",
+    name: "Nisha Shah",
+    role: "CFO",
+    company: "Co-operative Society",
+    avatar: "/avatar-2.png",
   },
   {
     quote:
-      "Every single person we worked with was just a total rock star.",
-    name: "Maurice Harary",
-    role: "CEO",
-    company: "fluz",
-    avatar: "/avatar-maurice.png",
+      "We got our home loan approved quickly thanks to their banking connections and paperwork support.",
+    name: "Amit Patel",
+    role: "Individual Client",
+    company: "Home Loan Customer",
+    avatar: "/avatar-3.png",
   },
   {
     quote:
-      "Highnote's infrastructure for money movement across financial accounts made it a perfect fit.",
-    name: "Trista Kempa",
-    role: "COO",
-    company: "ferry",
-    avatar: "/avatar-trista.png",
+      "Their audit team identified critical financial gaps and helped us strengthen compliance across departments.",
+    name: "Kunal Desai",
+    role: "Finance Head",
+    company: "Pharma Solutions",
+    avatar: "/avatar-4.png",
   },
   {
     quote:
-      "Highnote's infrastructure for money movement across financial accounts made it a perfect fit.",
-    name: "Trista Kempa",
-    role: "COO",
-    company: "ferry",
-    avatar: "/avatar-trista.png",
+      "From tax planning to annual filings, SNAP & Associates has been a trusted advisor for our growing business.",
+    name: "Priya Jain",
+    role: "Founder",
+    company: "Jain Realty",
+    avatar: "/avatar-5.png",
   },
 ];
 

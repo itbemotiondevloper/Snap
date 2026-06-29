@@ -33,22 +33,22 @@ export function FounderNoteSection() {
           viewport={{ once: true, amount: 0.45 }}
           transition={{ duration: 0.55 }}
         >
-          Don&apos;t Just{" "}
-          <span className="decoration-[#1464ff] decoration-wavy underline decoration-2 underline-offset-[12px]">
-            Dream Big
-          </span>{" "}
-          -{" "}
-          <span className="decoration-[#1464ff] underline decoration-2 underline-offset-[11px]">
-            Let&apos;s
-          </span>{" "}
-          <span className="relative inline-block text-[#1464ff]">
-            Make It Happen!
-            <span className="absolute -right-5 -top-4 h-8 w-7 text-[#1464ff]">
-              <span className="absolute left-3 top-0 h-5 w-px rotate-6 bg-current" />
-              <span className="absolute left-5 top-2 h-4 w-px rotate-45 bg-current" />
-              <span className="absolute left-0 top-1 h-4 w-px -rotate-12 bg-current" />
-            </span>
-          </span>
+          Don't Wait for{" "}
+<span className="decoration-[#1464ff] decoration-wavy underline decoration-2 underline-offset-[12px]">
+ Tax Season
+</span>{" "}
+-{" "}
+<span className="decoration-[#1464ff] underline decoration-2 underline-offset-[11px]">
+  Let's 
+</span>{" "}
+<span className="relative inline-block text-[#1464ff]">
+ Plan Ahead!
+  <span className="absolute -right-5 -top-4 h-8 w-7 text-[#1464ff]">
+    <span className="absolute left-3 top-0 h-5 w-px rotate-6 bg-current" />
+    <span className="absolute left-5 top-2 h-4 w-px rotate-45 bg-current" />
+    <span className="absolute left-0 top-1 h-4 w-px -rotate-12 bg-current" />
+  </span>
+</span>
         </motion.h2>
 
         <div className="mt-9 grid gap-10 lg:grid-cols-[610px_1fr] lg:items-start">
@@ -58,39 +58,40 @@ export function FounderNoteSection() {
           viewport={{ once: true, amount: 0.35 }}
           transition={{ duration: 0.6 }}
         >
-        <div className="max-w-[590px] space-y-5 text-[13px] leading-[1.6] text-[#20242c] dark:text-gray-300">
-            <p>
-              For over a decade, I&apos;ve been at the forefront of turning bold,
-              ambitious ideas into groundbreaking solutions. As the CEO of
-              SolGuruz, I&apos;ve had the privilege of helping startups and
-              businesses scale to new heights with products that do not just
-              compete - they dominate.
-            </p>
-            <p>
-              Every meeting with me isn&apos;t just a conversation; it&apos;s a launchpad
-              for ideas that can catapult into great products and services.
-              Leaders who&apos;ve taken the step to connect with me have walked away with
-              actionable strategies that made their products unforgettable.
-            </p>
-            <p>
-              <span className="text-[#f1b400]">👉</span> Book a free strategy call with me now and experience the
-              difference. This isn&apos;t just advice - it&apos;s the spark you need to
-              ignite your next big breakthrough.
-            </p>
-            <p>
-              In a world full of ordinary, let&apos;s create the AI-extraordinary.
-              <br />
-              Your moment is now - don&apos;t let it pass by.
-            </p>
-          </div>
+       <div className="max-w-[590px] space-y-5 text-[13px] leading-[1.6] text-[#20242c] dark:text-gray-300">
+  <p>
+    At SNAP & Associates, we bring over a decade of professional expertise in
+    delivering reliable financial, taxation, audit, and advisory services to
+    businesses and individuals across diverse industries.
+  </p>
+
+  <p>
+    Our commitment goes beyond compliance. We help clients make informed
+    financial decisions, strengthen internal controls, optimize tax planning,
+    and build a strong foundation for sustainable growth.
+  </p>
+
+  <p>
+    <span className="text-[#f1b400]">👉</span> Connect with our experts today
+    for personalized financial guidance, strategic advisory, and practical
+    solutions tailored to your business needs.
+  </p>
+
+  <p>
+    With trust, integrity, and excellence at the core of everything we do,
+    we aim to be your long-term financial partner.
+    <br />
+    Your growth is our priority.
+  </p>
+</div>
           <div className="mt-6">
-           <p className="text-[15px] font-extrabold leading-none text-[#171b26] dark:text-white">anand dkfdf</p>
-          <p className="mt-2 text-[11px] text-gray-700 dark:text-gray-400">ABs</p>
+           <p className="text-[15px] font-extrabold leading-none text-[#171b26] dark:text-white"> CA Sagar Gotawala & CA Aakash Bagrecha</p>
+          <p className="mt-2 text-[11px] text-gray-700 dark:text-gray-400">Co-founders</p>
             <a
               className="mt-3 inline-flex text-xs font-semibold text-[#1164ff]"
-              href="mailto:Abs@gmail.com"
+              href="mailto:casagar98@gmail.com"
             >
-              Abs@gmail.com
+              casagar98@gmail.com
             </a>
             <div className="mt-4 flex gap-2">
               {[Link, X, Mail].map((Icon, index) => (

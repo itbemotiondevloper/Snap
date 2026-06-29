@@ -14,33 +14,33 @@ type ProcessStep = {
 const processSteps: ProcessStep[] = [
   {
     number: "01",
-    title: "Pre-Concept",
+    title: "Understand",
     description:
-      "We clarify objectives, constraints, and commercial drivers, establishing a brief that aligns ambition with operational reality.",
+      "We begin by understanding your business, financials, and goals in depth.",
     image: "/process-pre-concept.png",
-    alt: "Pre-concept moodboard collage",
+    alt: "Understand",
   },
   {
     number: "02",
-    title: "Concept Design",
+    title: "Plan",
     description:
-      "We translate strategy into a clear spatial concept, testing ideas against brand, experience, and feasibility.",
+      "We design a tailored strategy tax, audit, or advisory suited to your needs.",
     image: "/process-concept-design.png",
     alt: "Concept design architectural sketch",
   },
   {
     number: "03",
-    title: "Schematic Design",
+    title: "Execute",
     description:
-      "We develop coordinated layouts and systems, resolving key decisions before time and cost escalate.",
+      "Our team handles filings, audits, and advisory with precision and compliance.",
     image: "/process-schematic-design.png",
     alt: "Schematic design architectural model",
   },
   {
     number: "04",
-    title: "Detail Design",
+    title: "Review",
     description:
-      "We develop the design intent into buildable detail, resolving interfaces, materials, and systems before construction begins.",
+      "We monitor outcomes and keep you updated with proactive guidance year-round.",
     image: "/process-detail-design.png",
     alt: "Detailed architectural drawing sheet",
   },
@@ -153,8 +153,7 @@ export function ProcessSection() {
           viewport={{ once: true, amount: 0.35 }}
           transition={{ duration: 0.65 }}
         >
-          Our work follows a clear, structured process, allowing creativity to
-          sit alongside commercial and technical rigour.
+         Our work follows a clear and structured approach, balancing innovation with commercial and technical excellence.
         </motion.h2>
 
         <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0">
@@ -170,8 +169,7 @@ export function ProcessSection() {
           viewport={{ once: true, amount: 0.6 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          Join 300,000+ owners, directors, teachers, and families already on
-          Playground
+          Join 1000+ business owners, directors, and families who trust us.
         </motion.p>
       </div>
     </section>

@@ -1,32 +1,35 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, X } from "lucide-react";
+import { ArrowUpRight, X, Phone, Mail } from "lucide-react";
 
 const footerColumns = [
   {
-    title: "Products and solutions",
-    links: ["TrialPioneer", "Digital Twins", "Digital Twin Generators"],
-  },
-  {
-    title: "Research",
-    links: ["Artificial Intelligence", "Clinical Research"],
-  },
-  {
     title: "Company",
-    links: ["About", "Careers", "Blog", "Press"],
+    links: [
+      "About Us",
+      "Services",
+      "Industries",
+      "Testimonials",
+      "FAQ",
+      "Contact Us",
+    ],
   },
 ];
-
 const socialLinks = [
   {
-    label: "X.com",
-    href: "https://x.com",
-    type: "icon",
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/",
+    type: "text",
   },
   {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/in/burhanit11/",
+    label: "Email",
+    href: "mailto:casagar98@gmail.com",
+    type: "text",
+  },
+  {
+    label: "Call",
+    href: "tel:+919898547188",
     type: "text",
   },
 ];
@@ -84,7 +87,33 @@ function FooterColumn({
     </div>
   );
 }
+function ContactColumn() {
+  return (
+    <div>
+      <h3 className="text-[10px] font-medium uppercase tracking-[0.08em] text-white/42">
+        Contact
+      </h3>
 
+      <div className="mt-5 space-y-4 text-xs leading-6 text-white/78">
+        <p>
+          2028-2029, World Trade Center,
+          Near Udhna Darwaja, Ring Road,
+          Surat – 395002
+        </p>
+
+        <div className="flex items-center gap-2">
+          <Phone size={14} className="text-white" />
+          <span>+91 98985 47188</span>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <Mail size={14} className="text-white" />
+          <span>casagar98@gmail.com</span>
+        </div>
+      </div>
+    </div>
+  );
+}
 export function FooterSection() {
   return (
     <footer className="bg-[#1a061a] text-white">
@@ -104,10 +133,10 @@ export function FooterSection() {
           </div>
 
           <div className="px-6 pb-12 text-center lg:px-[50px] lg:py-12 lg:text-left">
-            <h2 className="mx-auto max-w-[520px] text-[26px] leading-[1.2] sm:text-[38px]">
-              <span className="text-[#b6a7ff]">The AI partner</span> of choice
-              for top pharma and biotechs
-            </h2>
+         <h2 className="mx-auto max-w-[520px] text-[26px] leading-[1.2] sm:text-[38px]">
+  <span className="text-[#b6a7ff]">Trusted financial partner</span> for
+  businesses and individuals
+</h2>
 
             <a
               href="#"
@@ -131,7 +160,7 @@ export function FooterSection() {
               className="inline-flex items-center gap-2 text-[17px] font-bold uppercase tracking-[-0.04em]"
             >
               <UnlearnMark compact />
-              Unlearn
+          SNAP & Associates
             </a>
           </div>
 
@@ -145,9 +174,16 @@ export function FooterSection() {
                 title={column.title}
                 links={column.links}
               />
+              
             </motion.div>
+            
           ))}
-
+<motion.div
+  initial={{ opacity: 0, y: 25 }}
+  whileInView={{ opacity: 1, y: 0 }}
+>
+  <ContactColumn />
+</motion.div>
           <div>
             <h3 className="text-[10px] font-medium uppercase tracking-[0.08em] text-white/42">
               Connect
