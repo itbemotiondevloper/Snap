@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TYour Trusted Financial Partners",
+  title: "Your Trusted Financial Partners",
   description: "Empowering individuals and businesses with reliable financial guidance, smart solutions, and long-term growth strategies."
 };
 
