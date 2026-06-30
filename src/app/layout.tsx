@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "The Intelligent File Browser",
-  description: "A responsive animated hero section for an AI file browser.",
+  title: "TYour Trusted Financial Partners",
+  description: "Empowering individuals and businesses with reliable financial guidance, smart solutions, and long-term growth strategies."
 };
 
 export default function RootLayout({
