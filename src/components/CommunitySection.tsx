@@ -1,9 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
+import { Ms_Madi } from "next/font/google";
 
+const msMadi = Ms_Madi({
+  weight: "400",
+  subsets: ["latin"],
+});
 function Counter({
   target,
   suffix = "",
@@ -51,15 +56,17 @@ const cards = [
     title: "Founder-led. Built with operators.",
     name: "CA Sagar Gotawala",
     role: "Co-Founder",
+    image: "/sagar.png",
     desc:
-      "SNAP & Associates was founded by CA Sagar Gotawala & CA Aakash Bagrecha, both qualified Chartered Accountants since 2014. Over the past decade, the firm has built a reputation for delivering honest, expert, and personalized financial services to businesses across Surat.",
+      "SNAP & Associates was founded by CA Sagar Gotawala & CA Aakash Bagrecha...",
   },
   {
-   title: "Strategic vision. Trusted advice.",
+    title: "Strategic vision. Trusted advice.",
     name: "CA Aakash Bagrecha",
     role: "Co-Founder",
+    image: "/aakash.png",
     desc:
-      "SNAP & Associates was founded by CA Sagar Gotawala & CA Aakash Bagrecha, both qualified Chartered Accountants since 2014. Over the past decade, the firm has built a reputation for delivering honest, expert, and personalized financial services to businesses across Surat.",
+      "SNAP & Associates was founded by CA Sagar Gotawala & CA Aakash Bagrecha...",
   },
 ];
 
@@ -68,15 +75,15 @@ export function CommunitySection() {
 useEffect(() => {
   const interval = setInterval(() => {
     setActiveCard((prev) => (prev + 1) % cards.length);
-  }, 1000); // changes every 4 sec
+ }, 10000); // changes every 4 sec
 
   return () => clearInterval(interval);
 }, []);
   return (
-    <section className="theme-section relative overflow-hidden border-y border-[#191919]/10 bg-[#f3efe3] px-4 pb-12 pt-8 sm:px-8 sm:pb-20 lg:px-10">
+    <section className="theme-section relative overflow-hidden border-y border-[#191919]/10 bg-[#f3efe3] px-4 pb-12 pt-8 sm:px-8 sm:pb-20 lg:px-10" id="about">
       <div className="mx-auto max-w-[900px]">
         <motion.h2
-       className="max-w-[560px] text-[30px] sm:text-[42px] md:text-[52px] font-semibold leading-[1.08] tracking-tight text-[#171717] dark:text-white"
+       className="max-w-[560px] text-4xl sm:text-5xl font-semibold leading-[1.08] tracking-tight text-[#171717] dark:text-white"
           initial={{ opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
         >
@@ -102,51 +109,74 @@ useEffect(() => {
         </motion.div>
 
         {/* Carousel */}
-        <div className="pt-12">
-          <div className="grid gap-8 md:grid-cols-[350px_1fr] md:gap-[64px]">
-            <div className="mx-auto w-full max-w-[287px] overflow-hidden rounded-md bg-[#c7a78e]">
-              <Image
-                src="/founder-portrait.png"
-                alt="Founder"
-                width={360}
-                height={360}
-                className="h-full w-full object-cover object-top"
-              />
-            </div>
+      <div className="pt-12">
+<AnimatePresence mode="wait">
+  <motion.div
+    key={activeCard}
+    initial={{ opacity: 0, x: 40 }}
+    animate={{ opacity: 1, x: 0 }}
+    exit={{ opacity: 0, x: -40 }}
+    transition={{
+      duration: 1.2,
+      ease: "easeInOut",
+    }}
+    className="rounded-3xl bg-white shadow-xl p-4 sm:p-6 md:p-8"
+  >
+   
 
-            <article className="rounded-2xl p-8">
-              <h3 className="text-[24px] sm:text-[30px]">
-                {cards[activeCard].title}
-              </h3>
+    <div className="grid gap-8 md:grid-cols-[350px_1fr] md:gap-[64px]">
+      
+      {/* Dynamic Image */}
+      <div className="mx-auto w-full max-w-[287px] overflow-hidden rounded-2xl bg-[#c7a78e] shadow-lg">
+        <Image
+          src={cards[activeCard].image}
+          alt={cards[activeCard].name}
+          width={360}
+          height={420}
+          className="h-full w-full object-cover object-top"
+        />
+      </div>
 
-              <p className="mt-6 text-[12px] leading-6">
-                {cards[activeCard].desc}
-              </p>
+      {/* Content */}
+      <article className="rounded-2xl p-4 sm:p-8">
+        <h3 className="text-[24px] sm:text-[30px] font-semibold">
+          {cards[activeCard].title}
+        </h3>
 
-              <div className="mt-11 text-right">
-                <p className="font-serif text-[42px] italic">
-                  {cards[activeCard].name}
-                </p>
-                <p className="mt-4 text-[9px] uppercase">
-                  {cards[activeCard].role}
-                </p>
-              </div>
-            </article>
-          </div>
+        <p className="mt-6 text-[12px] sm:text-[14px] leading-7 text-gray-600">
+          {cards[activeCard].desc}
+        </p>
 
-          {/* Dots */}
-          <div className="mt-6 flex justify-center gap-3">
-            {cards.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setActiveCard(index)}
-                className={`h-3 w-3 rounded-full ${
-                  activeCard === index ? "bg-black" : "bg-gray-400"
-                }`}
-              />
-            ))}
-          </div>
+        <div className="mt-11 text-right">
+       <p
+  className={`${msMadi.className} text-[20px] sm:text-[40px] leading-none`}
+>
+  {cards[activeCard].name}
+</p>
+          <p className="mt-4 text-[9px] uppercase tracking-[3px] text-gray-500">
+            {cards[activeCard].role}
+          </p>
         </div>
+      </article>
+    </div>
+  </motion.div>
+</AnimatePresence>
+
+  {/* Dots */}
+  <div className="mt-6 flex justify-center gap-3">
+    {cards.map((_, index) => (
+      <button
+        key={index}
+        onClick={() => setActiveCard(index)}
+        className={`transition-all ${
+          activeCard === index
+            ? "h-3 w-8 rounded-full bg-black"
+            : "h-3 w-3 rounded-full bg-gray-400"
+        }`}
+      />
+    ))}
+  </div>
+</div>
       </div>
     </section>
   );

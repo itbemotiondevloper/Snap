@@ -145,18 +145,3 @@ html[data-theme="dark"] .theme-section textarea::placeholder {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(calc(-50% - 16px));
-  }
-}
-
-.animate-scroll {
-  display: flex;
-  width: fit-content;
-  animation: scroll 20s linear infinite;
-}

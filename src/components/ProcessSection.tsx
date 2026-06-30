@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-
+import { Check, Clock3, Menu, Megaphone, RefreshCw } from "lucide-react";
 type ProcessStep = {
   number: string;
   title: string;
@@ -82,9 +82,9 @@ function ProcessCard({
         y: 0,
         scale: 1,
       }}
-      whileHover={{
-        y: -8,
-      }}
+      // whileHover={{
+      //   y: -8,
+      // }}
       viewport={{
         once: false,
         amount: 0.2,
@@ -131,23 +131,24 @@ function ProcessCard({
 
 export function ProcessSection() {
   return (
-   <section className="theme-section relative overflow-hidden border-b border-[#191919]/10 dark:border-white/10 bg-[#f3efe3] dark:bg-[#050814] px-4 py-12 sm:px-8 sm:py-18 lg:px-8">
+   <section className="theme-section relative overflow-hidden border-b border-[#191919]/10 dark:border-white/10 bg-[#f3efe3] dark:bg-[#050814] px-4 py-12 sm:px-8 sm:py-18 lg:px-8" id="process">
       <div className="pointer-events-none absolute inset-y-0 left-[15%] hidden w-px bg-[#191919]/8 dark:bg-white/10 lg:block" />
       <div className="pointer-events-none absolute inset-y-0 right-[15%] hidden w-px bg-[#191919]/8 dark:bg-white/10 lg:block" />
 
-      <div className="mx-auto max-w-[940px]">
+      <div className="mx-auto max-w-[1240px]">
         <motion.p
-          className="text-[11px] font-semibold text-[#191919] dark:text-white"
+          className="inline-flex items-center gap-1 text-xs font-semibold text-[#ff6148]"
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.45 }}
         >
-          (Process)
+         <Megaphone size={16} />
+            Our Process
         </motion.p>
 
         <motion.h2
-          className="mt-1 max-w-5xl text-[28px] font-normal leading-tight tracking-normal text-[#242424] dark:text-white sm:text-5xl lg:text-6xl"
+         className="mt-1 max-w-5xl text-4xl font-semibold leading-tight tracking-normal text-[#242424] dark:text-white sm:text-5xl"
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.35 }}

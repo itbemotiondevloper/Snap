@@ -27,41 +27,41 @@ function PaperNote({ quote, author }: { quote: string; author: string }) {
         +
       </div>
 
-<p
-  className="
-    relative
-    z-10
-    rounded-md
-    px-3
-    py-2
-    text-[15px]
-    sm:text-[16px]
-    font-semibold
-    italic
-    leading-[1.25]
-    text-[#111111]
-    transition-all
-    duration-500
-    group-hover:bg-[#ffe082]
-    group-hover:text-[#111111]
-    group-hover:shadow-md
-  "
->
-  &quot;{quote}&quot;
-</p>
-  <p
-  className="
-    mt-4
-    text-[11px]
-    leading-4
-    text-[#7f776b]
-    transition-all
-    duration-500
-    group-hover:text-black
-  "
->
-  {author}
-</p>
+      <p
+        className="
+          relative
+          z-10
+          rounded-md
+          px-3
+          py-2
+          text-[15px]
+          sm:text-[16px]
+          font-semibold
+          italic
+          leading-[1.25]
+          text-[#111111]
+          transition-all
+          duration-500
+          group-hover:bg-[#ffe082]
+          group-hover:text-[#111111]
+          group-hover:shadow-md
+        "
+      >
+        &quot;{quote}&quot;
+      </p>
+      <p
+        className="
+          mt-4
+          text-[11px]
+          leading-4
+          text-[#7f776b]
+          transition-all
+          duration-500
+          group-hover:text-black
+        "
+      >
+        {author}
+      </p>
 
       <div className="absolute bottom-0 right-0 h-16 w-24 rounded-tl-[60px] bg-gradient-to-br from-transparent via-[#ded8cd] to-[#bfb7aa] opacity-70" />
     </motion.div>
@@ -111,15 +111,13 @@ function PredictiveCard() {
       transition={{ duration: 0.5, delay: 0.12 }}
     >
       <h3 className="text-[16px] font-semibold leading-tight">
-       Predictive Tax Planning
+        Predictive Tax Planning
       </h3>
       <p className="mt-4 max-w-[250px] text-[13px] leading-5 text-[#706b62]">
-      Plan your taxes before the year ends, not after. We forecast your liability and maximize savings with smart, proactive strategies.
+        Plan your taxes before the year ends, not after. We forecast your liability and maximize savings with smart, proactive strategies.
       </p>
 
-  
- <TaxCalculator />
-
+      <TaxCalculator />
     </motion.article>
   );
 }
@@ -223,15 +221,16 @@ function TaxChecklistCard() {
         ))}
       </div>
 
-    <div className="mt-6 rounded bg-gray-100 p-3 text-[11px] text-gray-700 dark:bg-gray-800 dark:text-gray-200">
-  3 / 4 tasks completed
-</div>
+      <div className="mt-6 rounded bg-gray-100 p-3 text-[11px] text-gray-700 dark:bg-gray-800 dark:text-gray-200">
+        3 / 4 tasks completed
+      </div>
     </div>
   );
 }
+
 export function MarketingSection() {
   return (
-    <section className="theme-section border-b border-[#191919]/10 bg-[#f3efe3] px-5 py-16 sm:px-8 sm:py-20">
+    <section className="theme-section border-b border-[#191919]/10 bg-[#f3efe3] px-5 py-16 sm:px-8 sm:py-20" id="advantage">
       <div className="mx-auto max-w-[940px]">
         <motion.div
           className="text-center"
@@ -245,17 +244,54 @@ export function MarketingSection() {
             Our Advantage
           </p>
           <h2 className="mx-auto mt-4 max-w-xl text-4xl font-semibold leading-[0.95] tracking-normal sm:text-5xl">
-          Never let a tax deadline or compliance gap hurt your business
+            Never let a tax deadline or compliance gap hurt your business
           </h2>
           <p className="mx-auto mt-4 max-w-sm text-sm leading-5 text-[#706b62]">
-           Complete financial management right at your fingertips from GST filings to audit reports, all handled by experts.
-
+            Complete financial management right at your fingertips from GST filings to audit reports, all handled by experts.
           </p>
         </motion.div>
 
-        <div className="mt-10 grid gap-3 lg:grid-cols-[1fr_1fr_0.98fr]">
+        {/*
+          MOBILE: horizontal scroll (flex row, snap, no-wrap)
+          DESKTOP (lg+): original 3-column grid layout, scroll disabled
+        */}
+        <div
+          className="
+            mt-10
+            flex
+            gap-4
+            overflow-x-auto
+            snap-x
+            snap-mandatory
+            pb-4
+            -mx-5
+            px-5
+            sm:-mx-8
+            sm:px-8
+            scrollbar-hide
+            lg:mx-0
+            lg:px-0
+            lg:grid
+            lg:grid-cols-[1fr_1fr_0.98fr]
+            lg:gap-3
+            lg:overflow-visible
+            lg:pb-0
+          "
+        >
           <motion.article
-            className="overflow-hidden rounded-[10px] bg-white shadow-sm lg:col-span-2"
+            className="
+              shrink-0
+              w-[88vw]
+              max-w-[420px]
+              snap-center
+              overflow-hidden
+              rounded-[10px]
+              bg-white
+              shadow-sm
+              lg:w-auto
+              lg:max-w-none
+              lg:col-span-2
+            "
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -264,11 +300,10 @@ export function MarketingSection() {
             <div className="grid min-h-[306px] gap-8 p-7 lg:grid-cols-[0.95fr_1.05fr]">
               <div>
                 <h3 className="max-w-[235px] text-[16px] font-semibold leading-tight">
-                
-                   Don't let a compliance deadline slip through the cracks
+                  Don&apos;t let a compliance deadline slip through the cracks
                 </h3>
                 <p className="mt-4 max-w-[260px] text-[13px] leading-5 text-[#706b62]">
-               We track all your GST, Income Tax, and audit deadlines — so you never face penalties or last-minute stress.
+                  We track all your GST, Income Tax, and audit deadlines — so you never face penalties or last-minute stress.
                 </p>
                 <div className="mt-10">
                   <PaperNote
@@ -283,10 +318,23 @@ export function MarketingSection() {
             </div>
           </motion.article>
 
-          <PredictiveCard />
+          <div className="shrink-0 w-[88vw] max-w-[420px] snap-center lg:w-auto lg:max-w-none lg:contents">
+            <PredictiveCard />
+          </div>
 
           <motion.article
-            className="rounded-[10px] bg-white p-7 shadow-sm"
+            className="
+              shrink-0
+              w-[88vw]
+              max-w-[420px]
+              snap-center
+              rounded-[10px]
+              bg-white
+              p-7
+              shadow-sm
+              lg:w-auto
+              lg:max-w-none
+            "
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -296,13 +344,25 @@ export function MarketingSection() {
               Financial advisory built for business growth
             </h3>
             <p className="mt-4 max-w-[250px] text-[13px] leading-5 text-[#706b62]">
-            Plan your taxes before the year ends, not after. We forecast your liability and maximize savings with smart, proactive strategies.
+              Plan your taxes before the year ends, not after. We forecast your liability and maximize savings with smart, proactive strategies.
             </p>
             <WebsitePreview />
           </motion.article>
 
           <motion.article
-            className="overflow-hidden rounded-[10px] bg-white shadow-sm lg:col-span-2"
+            className="
+              shrink-0
+              w-[88vw]
+              max-w-[420px]
+              snap-center
+              overflow-hidden
+              rounded-[10px]
+              bg-white
+              shadow-sm
+              lg:w-auto
+              lg:max-w-none
+              lg:col-span-2
+            "
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -310,19 +370,19 @@ export function MarketingSection() {
           >
             <div className="grid gap-7 p-7 lg:grid-cols-[0.92fr_1fr]">
               <div>
-             <h3 className="text-[16px] font-semibold">Smart tax planning made simple</h3>
+                <h3 className="text-[16px] font-semibold">Smart tax planning made simple</h3>
 
-<p className="mt-4 max-w-[300px] text-[13px] leading-5 text-[#706b62]">
-  Stay ahead of deadlines and maximize deductions with a simple tax planning
-  checklist designed for individuals and businesses.
-</p>
+                <p className="mt-4 max-w-[300px] text-[13px] leading-5 text-[#706b62]">
+                  Stay ahead of deadlines and maximize deductions with a simple tax planning
+                  checklist designed for individuals and businesses.
+                </p>
 
-<div className="mt-7">
-  <PaperNote
-    quote="I reduced last-minute tax stress and saved more with structured planning."
-    author="Rahul Sharma, Business Owner"
-  />
-</div>
+                <div className="mt-7">
+                  <PaperNote
+                    quote="I reduced last-minute tax stress and saved more with structured planning."
+                    author="Rahul Sharma, Business Owner"
+                  />
+                </div>
               </div>
               <div className="flex items-start justify-center lg:justify-end">
                 <TaxChecklistCard />

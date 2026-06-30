@@ -2,14 +2,14 @@
 
 import { motion } from "framer-motion";
 import { ArrowUpRight, X, Phone, Mail } from "lucide-react";
-
+import { FaLinkedinIn, FaFacebookF, FaInstagram } from "react-icons/fa";
 const footerColumns = [
   {
     title: "Company",
     links: [
       "About Us",
-      "Services",
-      "Industries",
+      "Process",
+      "Our Advantage",
       "Testimonials",
       "FAQ",
       "Contact Us",
@@ -19,18 +19,18 @@ const footerColumns = [
 const socialLinks = [
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/",
-    type: "text",
+    href: "https://linkedin.com",
+    icon: <FaLinkedinIn size={18} />,
   },
   {
-    label: "Email",
-    href: "mailto:casagar98@gmail.com",
-    type: "text",
+    label: "Facebook",
+    href: "https://facebook.com",
+    icon: <FaFacebookF size={18} />,
   },
   {
-    label: "Call",
-    href: "tel:+919898547188",
-    type: "text",
+    label: "Instagram",
+    href: "https://instagram.com",
+    icon: <FaInstagram size={18} />,
   },
 ];
 
@@ -116,7 +116,7 @@ function ContactColumn() {
 }
 export function FooterSection() {
   return (
-    <footer className="bg-[#1a061a] text-white">
+    <footer className="bg-[#050814] text-white">
       <div className="mx-auto max-w-[1214px]">
         {/* Top */}
         <div className="grid border-b border-white/10 lg:min-h-[250px] lg:grid-cols-[170px_296px_1fr_162px]">
@@ -190,31 +190,25 @@ export function FooterSection() {
             </h3>
 
             <div className="mt-5 flex gap-3">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="grid size-11 place-items-center rounded-full bg-white/10 transition hover:bg-white hover:text-[#1a061a]"
-                >
-                  {social.type === "icon" ? (
-                    <X size={16} />
-                  ) : (
-                    <span className="text-sm font-bold">in</span>
-                  )}
-                </a>
-              ))}
+             {socialLinks.map((social) => (
+  <a
+    key={social.label}
+    href={social.href}
+    className="grid size-11 place-items-center rounded-full bg-black/10 hover:bg-black hover:text-white"
+  >
+    {social.icon}
+  </a>
+))}
             </div>
           </div>
         </div>
 
         {/* Bottom */}
         <div className="flex flex-col gap-4 px-6 pb-6 text-[10px] text-white/42 md:flex-row md:justify-between lg:px-[170px]">
-          <p>&copy; 2026 Burhan Rabbani, Inc. All rights reserved.</p>
+          <p>&copy; 2026  All rights reserved.</p>
 
           <div className="flex flex-wrap gap-6 md:gap-12">
-            <a href="#" className="transition hover:text-white">
+            {/* <a href="#" className="transition hover:text-white">
               Terms
             </a>
             <a href="#" className="transition hover:text-white">
@@ -222,7 +216,7 @@ export function FooterSection() {
             </a>
             <a href="#" className="transition hover:text-white">
               Data Acknowledgements
-            </a>
+            </a> */}
           </div>
         </div>
       </div>

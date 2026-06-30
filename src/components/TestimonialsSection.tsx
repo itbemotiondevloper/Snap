@@ -50,7 +50,7 @@ const mobileTestimonials = [...testimonials, ...testimonials];
 
 export function TestimonialsSection() {
   return (
-    <section className="theme-section mt-10 overflow-hidden bg-[#f3efe3] dark:bg-[#050814]">
+    <section className="theme-section mt-10 overflow-hidden bg-[#f3efe3] dark:bg-[#050814]" id="testimonials">
       {/* MOBILE AUTO SCROLL */}
       <div className="lg:hidden overflow-hidden">
         <motion.div

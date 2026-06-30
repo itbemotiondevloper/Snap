@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Link, Mail, X } from "lucide-react";
-
+import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 const photos = [
   {
     src: "/founder-event.png",
@@ -72,7 +72,7 @@ export function FounderNoteSection() {
   </p>
 
   <p>
-    <span className="text-[#f1b400]">👉</span> Connect with our experts today
+    Connect with our experts today
     for personalized financial guidance, strategic advisory, and practical
     solutions tailored to your business needs.
   </p>
@@ -93,18 +93,24 @@ export function FounderNoteSection() {
             >
               casagar98@gmail.com
             </a>
-            <div className="mt-4 flex gap-2">
-              {[Link, X, Mail].map((Icon, index) => (
-                <a
-className="grid size-8 place-items-center rounded-sm border-2 border-[#191919] dark:border-gray-600 bg-white dark:bg-[#111827] text-[#191919] dark:text-white shadow-[2px_2px_0_#191919] dark:shadow-none transition hover:-translate-y-1 hover:bg-[#191919] hover:text-white"
-                  href="#"
-                  key={index}
-                  aria-label="Social link"
-                >
-                  <Icon size={16} />
-                </a>
-              ))}
-            </div>
+         <div className="mt-4 flex gap-2">
+  {[
+    { Icon: FaFacebookF, href: "https://facebook.com" },
+    { Icon: FaInstagram, href: "https://instagram.com" },
+    { Icon: FaLinkedinIn, href: "https://linkedin.com" },
+  ].map(({ Icon, href }, index) => (
+    <a
+      key={index}
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Social link"
+      className="grid size-8 place-items-center rounded-sm border-2 border-[#191919] dark:border-gray-600 bg-white dark:bg-[#111827] text-[#191919] dark:text-white shadow-[2px_2px_0_#191919] dark:shadow-none transition hover:-translate-y-1 hover:bg-[#191919] hover:text-white"
+    >
+      <Icon size={16} />
+    </a>
+  ))}
+</div>
           </div>
         </motion.article>
 
@@ -116,27 +122,38 @@ className="grid size-8 place-items-center rounded-sm border-2 border-[#191919] d
   transition={{ duration: 0.6, delay: 0.1 }}
 >
   {/* MOBILE */}
-  <div className="flex flex-col gap-4 lg:hidden">
+<div className="lg:hidden overflow-x-auto scrollbar-hide">
+  <div className="flex snap-x snap-mandatory gap-4 px-4">
     {photos.map((photo, index) => (
       <motion.div
         key={photo.src}
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ delay: index * 0.2 }}
-        whileHover={{ scale: 1.03, y: -5 }}
-        className="overflow-hidden rounded-md border-[3px] border-[#191919] bg-white shadow-sm"
+        className="
+          w-[calc(100vw-48px)]
+          max-w-full
+          flex-shrink-0
+          snap-center
+          overflow-hidden
+          rounded-md
+          border-[3px]
+          border-[#191919]
+          bg-white
+          shadow-sm
+        "
       >
         <Image
           src={photo.src}
           alt={photo.alt}
-          width={500}
-          height={500}
-          className="w-full h-auto object-contain"
+          width={800}
+          height={800}
+          className="h-[420px] w-full object-cover"
         />
       </motion.div>
     ))}
   </div>
-
+</div>
   {/* DESKTOP */}
   <div className="relative hidden h-[360px] lg:block">
     {photos.map((photo, index) => (

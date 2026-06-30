@@ -4,14 +4,6 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus } from "lucide-react";
 
-const categories = [
-  "General",
-  "Taxation",
-  "GST",
-  "Loans",
-  "Industries",
-];
-
 const faqs = [
   {
     question: "What services does SNAP & Associates offer?",
@@ -45,38 +37,18 @@ export function FAQSection() {
 
   return (
     <section className="theme-section border-b border-[#191919]/10 bg-[#f8f4eb] dark:bg-[#050814] px-4 py-12 sm:px-8 sm:py-20">
-      <div className="mx-auto max-w-[940px]">
-        <motion.h2
-         className="text-[34px] sm:text-5xl lg:text-6xl font-semibold leading-none tracking-tight text-[#191919] dark:text-white"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.45 }}
-          transition={{ duration: 0.5 }}
-        >
-          FAQ
-        </motion.h2>
+      <div className="mx-auto max-w-[940px]" id="faq">
+     <motion.h2
+  className="mx-auto mt-4 max-w-xl text-center text-4xl font-semibold leading-[0.95] tracking-normal text-[#191919] dark:text-white sm:text-5xl"
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true, amount: 0.45 }}
+  transition={{ duration: 0.5 }}
+>
+  FAQ
+</motion.h2>
 
-        {/* Categories */}
-        {/* <motion.div
-          className="mt-6 flex flex-wrap gap-2"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-        >
-          {categories.map((category, index) => (
-            <button
-              key={category}
-              type="button"
-              className={`rounded-full border px-3 py-2 text-[10px] sm:text-[11px] font-semibold uppercase transition-all duration-300 hover:scale-105 ${
-                index === 0
-                  ? "border-[#191919] bg-[#191919] text-white"
-                  : "border-[#191919] text-[#191919]"
-              }`}
-            >
-              {category}
-            </button>
-          ))}
-        </motion.div> */}
+       
 
         {/* FAQ Items */}
         <div className="mt-8 sm:mt-9">
