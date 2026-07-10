@@ -8,12 +8,12 @@ const footerColumns = [
   {
     title: "Company",
     links: [
-      "About Us",
-      "Process",
-      "Our Advantage",
-      "Testimonials",
-      "FAQ",
-      "Contact Us",
+      { label: "About Us", href: "#about" },
+      { label: "Process", href: "#process" },
+      { label: "Our Advantage", href: "#advantage" },
+      { label: "Testimonials", href: "#testimonials" },
+      { label: "FAQ", href: "#faq" },
+      { label: "Contact Us", href: "#contact" },
     ],
   },
 ];
@@ -41,7 +41,7 @@ function FooterColumn({
   links,
 }: {
   title: string;
-  links: string[];
+  links: { label: string; href: string }[];
 }) {
   return (
     <div>
@@ -52,11 +52,11 @@ function FooterColumn({
       <div className="mt-5 space-y-4">
         {links.map((link) => (
           <a
-            key={link}
-            href="#"
+            key={link.label}
+            href={link.href}
             className="block text-sm font-medium text-[#191919]/80 dark:text-white/80 transition hover:text-[#ff6148] dark:hover:text-white"
           >
-            {link}
+            {link.label}
           </a>
         ))}
       </div>
@@ -96,14 +96,7 @@ export function FooterSection() {
       <div className="mx-auto max-w-[1214px]">
         {/* Top */}
         <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between border-b border-[#191919]/10 dark:border-white/10 py-12 lg:py-20 px-6 lg:px-16 xl:px-[170px] gap-12">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.94 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.55 }}
-          >
-            <Image src="/snap-logo-light.png" alt="SNAP Logo" width={160} height={64} className="object-contain dark:hidden" />
-            <Image src="/snap-logo-dark.png" alt="SNAP Logo" width={160} height={64} className="object-contain hidden dark:block" />
-          </motion.div>
+
 
           <div className="text-center lg:text-left max-w-xl">
             <h2 className="text-3xl sm:text-4xl font-semibold leading-tight">
@@ -112,7 +105,7 @@ export function FooterSection() {
             </h2>
 
             <a
-              href="#"
+              href="#contact"
               className="mt-8 inline-flex items-center gap-3 text-sm sm:text-base font-medium text-[#191919] dark:text-white transition hover:opacity-80"
             >
               Contact us
@@ -127,7 +120,7 @@ export function FooterSection() {
         <div className="grid gap-12 px-6 py-16 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10 lg:px-16 xl:px-[170px]">
           <div className="sm:col-span-2 lg:col-span-1">
             <a
-              href="#"
+              href="#home"
               className="inline-flex items-center gap-2 text-[17px] font-bold uppercase tracking-[-0.04em]"
             >
               <Image src="/snap-logo-light.png" alt="SNAP Logo" width={80} height={32} className="object-contain dark:hidden" />
