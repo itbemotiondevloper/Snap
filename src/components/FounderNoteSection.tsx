@@ -27,23 +27,23 @@ export function FounderNoteSection() {
   <section className="theme-section bg-[#f3efe3] dark:bg-[#050814] px-5 py-12 sm:px-8 sm:py-14">
       <div className="mx-auto max-w-[940px]">
         <motion.h2
-          className="relative mx-auto max-w-4xl text-center text-[34px] font-bold leading-tight tracking-normal text-[#171b26] dark:text-white sm:text-[42px]"
+          className="relative mx-auto max-w-4xl text-center text-[34px] font-semibold leading-tight tracking-normal text-[#171b26] dark:text-white sm:text-[42px]"
           initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.45 }}
           transition={{ duration: 0.55 }}
         >
           Don't Wait for{" "}
-<span className="decoration-[#1464ff] decoration-wavy underline decoration-2 underline-offset-[12px]">
+<span className="decoration-[#ff6148] decoration-wavy underline decoration-2 underline-offset-[12px]">
  Tax Season
 </span>{" "}
 -{" "}
-<span className="decoration-[#1464ff] underline decoration-2 underline-offset-[11px]">
+<span className="decoration-[#ff6148] underline decoration-2 underline-offset-[11px]">
   Let's 
 </span>{" "}
-<span className="relative inline-block text-[#1464ff]">
+<span className="relative inline-block text-[#ff6148]">
  Plan Ahead!
-  <span className="absolute -right-5 -top-4 h-8 w-7 text-[#1464ff]">
+  <span className="absolute -right-5 -top-4 h-8 w-7 text-[#ff6148]">
     <span className="absolute left-3 top-0 h-5 w-px rotate-6 bg-current" />
     <span className="absolute left-5 top-2 h-4 w-px rotate-45 bg-current" />
     <span className="absolute left-0 top-1 h-4 w-px -rotate-12 bg-current" />
@@ -51,14 +51,14 @@ export function FounderNoteSection() {
 </span>
         </motion.h2>
 
-        <div className="mt-9 grid gap-10 lg:grid-cols-[610px_1fr] lg:items-start">
+        <div className="mt-12 grid gap-12 lg:gap-16 lg:grid-cols-[1fr_minmax(350px,0.8fr)] lg:items-center">
         <motion.article
           initial={{ opacity: 0, x: -40, y: 20 }}
          whileInView={{ opacity: 1, x: 0, y: 0 }}
           viewport={{ once: true, amount: 0.35 }}
           transition={{ duration: 0.6 }}
         >
-       <div className="max-w-[590px] space-y-5 text-[13px] leading-[1.6] text-[#20242c] dark:text-gray-300">
+       <div className="max-w-[590px] space-y-5 text-sm sm:text-base leading-relaxed text-[#20242c] dark:text-gray-300">
   <p>
     At SNAP & Associates, we bring over a decade of professional expertise in
     delivering reliable financial, taxation, audit, and advisory services to
@@ -84,11 +84,11 @@ export function FounderNoteSection() {
     Your growth is our priority.
   </p>
 </div>
-          <div className="mt-6">
-           <p className="text-[15px] font-extrabold leading-none text-[#171b26] dark:text-white"> CA Sagar Gotawala & CA Aakash Bagrecha</p>
-          <p className="mt-2 text-[11px] text-gray-700 dark:text-gray-400">Co-founders</p>
+          <div className="mt-8">
+           <p className="text-base sm:text-lg font-semibold leading-none text-[#171b26] dark:text-white"> CA Sagar Gotawala & CA Aakash Bagrecha</p>
+          <p className="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-400">Co-founders</p>
             <a
-              className="mt-3 inline-flex text-xs font-semibold text-[#1164ff]"
+              className="mt-4 inline-flex text-sm font-semibold text-[#ff6148] hover:underline"
               href="mailto:casagar98@gmail.com"
             >
               casagar98@gmail.com

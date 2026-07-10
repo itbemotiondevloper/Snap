@@ -77,7 +77,7 @@ export function ContactSection() {
   };
 
   return (
-    <section className="theme-section border-b border-[#191919]/10 dark:border-white/10 bg-[#f3efe3] dark:bg-[#050814] px-4 py-12 sm:px-8 sm:py-20">
+    <section className="theme-section border-b border-[#191919]/10 dark:border-white/10 bg-[#f3efe3] dark:bg-[#050814] px-5 py-16 sm:px-8 sm:py-24">
       <div
         className="mx-auto grid max-w-4xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center"
         id="contact"
@@ -89,7 +89,7 @@ export function ContactSection() {
           viewport={{ once: true, amount: 0.35 }}
           transition={{ duration: 0.55 }}
         >
-          <h2 className="max-w-md text-[28px] sm:text-3xl lg:text-4xl font-bold leading-tight text-[#191919] dark:text-white">
+          <h2 className="max-w-md text-[28px] sm:text-3xl lg:text-4xl font-semibold leading-tight text-[#191919] dark:text-white">
             Let&apos;s Start a Conversation
           </h2>
 
@@ -100,7 +100,7 @@ export function ContactSection() {
                 className="flex gap-3 text-sm leading-6 text-[#191919] dark:text-gray-300"
                 whileHover={{ x: 5 }}
               >
-                <Sparkles className="mt-1 shrink-0 text-[#315df5]" size={16} />
+                <Sparkles className="mt-1 shrink-0 text-[#ff6148]" size={16} />
                 <span>{bullet}</span>
               </motion.div>
             ))}
@@ -110,17 +110,17 @@ export function ContactSection() {
         {/* RIGHT FORM */}
         <motion.form
           onSubmit={handleSubmit}
-          className="rounded-lg border-2 border-[#191919] dark:border-white/20 bg-white dark:bg-[#0f172a] p-4 sm:p-6 shadow-[6px_6px_0_#191919] dark:shadow-none"
+          className="rounded-3xl border border-black/5 dark:border-white/10 bg-white dark:bg-[#0f172a] p-8 sm:p-10 shadow-sm transition-shadow hover:shadow-xl"
           initial={{ opacity: 0, x: 22 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.35 }}
         >
-          <div className="space-y-4">
+          <div className="space-y-5">
             <input
               name="name"
               value={form.name}
               onChange={handleChange}
-              className="h-12 w-full border border-[#9da3ad] px-4 text-sm outline-none focus:border-[#315df5]"
+              className="h-14 w-full rounded-xl border border-black/10 dark:border-white/10 bg-transparent px-5 text-sm outline-none transition-all focus:border-[#ff6148] focus:ring-1 focus:ring-[#ff6148] dark:text-white placeholder-[#191919]/40 dark:placeholder-white/40 hover:border-black/20 dark:hover:border-white/20"
               placeholder="Name"
               required
             />
@@ -130,7 +130,7 @@ export function ContactSection() {
               type="email"
               value={form.email}
               onChange={handleChange}
-              className="h-12 w-full border border-[#9da3ad] px-4 text-sm outline-none focus:border-[#315df5]"
+              className="h-14 w-full rounded-xl border border-black/10 dark:border-white/10 bg-transparent px-5 text-sm outline-none transition-all focus:border-[#ff6148] focus:ring-1 focus:ring-[#ff6148] dark:text-white placeholder-[#191919]/40 dark:placeholder-white/40 hover:border-black/20 dark:hover:border-white/20"
               placeholder="Email"
               required
             />
@@ -140,7 +140,7 @@ export function ContactSection() {
               type="tel"
               value={form.phone}
               onChange={handleChange}
-              className="h-12 w-full border border-[#9da3ad] px-4 text-sm outline-none focus:border-[#315df5]"
+              className="h-14 w-full rounded-xl border border-black/10 dark:border-white/10 bg-transparent px-5 text-sm outline-none transition-all focus:border-[#ff6148] focus:ring-1 focus:ring-[#ff6148] dark:text-white placeholder-[#191919]/40 dark:placeholder-white/40 hover:border-black/20 dark:hover:border-white/20"
               placeholder="Phone Number"
               required
             />
@@ -149,7 +149,7 @@ export function ContactSection() {
               name="service"
               value={form.service}
               onChange={handleChange}
-              className="h-12 w-full border border-[#9da3ad] px-4 text-sm outline-none focus:border-[#315df5]"
+              className="h-14 w-full rounded-xl border border-black/10 dark:border-white/10 bg-transparent px-5 text-sm outline-none transition-all focus:border-[#ff6148] focus:ring-1 focus:ring-[#ff6148] dark:text-white hover:border-black/20 dark:hover:border-white/20 cursor-pointer appearance-none"
             >
               <option value="">Select Service</option>
               <option>Audit Services</option>
@@ -164,15 +164,15 @@ export function ContactSection() {
               name="message"
               value={form.message}
               onChange={handleChange}
-              className="min-h-24 w-full resize-none border border-[#9da3ad] p-4 text-sm outline-none focus:border-[#315df5]"
+              className="min-h-32 w-full resize-none rounded-xl border border-black/10 dark:border-white/10 bg-transparent p-5 text-sm outline-none transition-all focus:border-[#ff6148] focus:ring-1 focus:ring-[#ff6148] dark:text-white placeholder-[#191919]/40 dark:placeholder-white/40 hover:border-black/20 dark:hover:border-white/20"
               placeholder="Message"
             />
           </div>
 
           <motion.button
-            whileHover={{ y: -2, scale: 1.01 }}
+            whileHover={{ y: -2, scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="mt-5 flex h-12 w-full items-center justify-center gap-2 rounded-md bg-[#315df5] text-sm font-semibold text-white disabled:opacity-70"
+            className="mt-6 flex h-14 w-full items-center justify-center gap-2 rounded-xl bg-[#ff6148] text-base font-semibold text-white shadow-md transition-all hover:bg-[#ff4f33] disabled:opacity-70"
             type="submit"
             disabled={status === "loading"}
           >

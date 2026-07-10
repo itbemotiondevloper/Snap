@@ -36,7 +36,7 @@ export function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="theme-section border-b border-[#191919]/10 bg-[#f8f4eb] dark:bg-[#050814] px-4 py-12 sm:px-8 sm:py-20">
+    <section className="theme-section border-b border-[#191919]/10 bg-[#f8f4eb] dark:bg-[#050814] px-5 py-16 sm:px-8 sm:py-24">
       <div className="mx-auto max-w-[940px]" id="faq">
      <motion.h2
   className="mx-auto mt-4 max-w-xl text-center text-4xl font-semibold leading-[0.95] tracking-normal text-[#191919] dark:text-white sm:text-5xl"
@@ -62,7 +62,7 @@ export function FAQSection() {
               transition={{ delay: index * 0.08 }}
             >
               <button
-                className="flex w-full items-center justify-between gap-4 px-5 py-5 sm:px-7 sm:py-6 text-left text-[16px] sm:text-lg md:text-xl font-medium text-[#191919] dark:text-white"
+                className="flex w-full items-center justify-between gap-4 px-5 py-5 sm:px-7 sm:py-6 text-left text-base sm:text-lg md:text-xl font-medium text-[#191919] dark:text-white"
                 onClick={() =>
                   setOpenIndex(openIndex === index ? null : index)
                 }
@@ -88,7 +88,7 @@ export function FAQSection() {
                     transition={{ duration: 0.35 }}
                     className="overflow-hidden"
                   >
-                  <p className="max-w-3xl px-5 pb-6 sm:px-7 sm:pb-7 text-[13px] sm:text-sm leading-7 text-[#5e584f] dark:text-gray-300">
+                  <p className="max-w-3xl px-5 pb-6 sm:px-7 sm:pb-7 text-sm sm:text-base leading-relaxed text-[#5e584f] dark:text-gray-300">
                       {faq.answer}
                     </p>
                   </motion.div>

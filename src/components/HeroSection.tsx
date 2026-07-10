@@ -15,6 +15,63 @@ const menuItems = [
   { label: "Contact", href: "#contact" },
 ];
 
+const generateStars = () => {
+  const stars = [];
+  for (let i = 0; i < 250; i++) {
+    // Deterministic pseudo-random using index 'i' to avoid hydration mismatches
+    const random1 = Math.abs((Math.sin(i * 12.9898) * 43758.5453) % 1);
+    const random2 = Math.abs((Math.cos(i * 78.233) * 43758.5453) % 1);
+    const random3 = Math.abs((Math.sin(i * 45.123) * 43758.5453) % 1);
+
+    const size = random1 * 4 + 2; // 2px to 6px
+    const x = random2 * 100;
+    const y = random3 * 100;
+    const duration = (random1 * 2) + 3; // 3s to 5s pulsing duration
+    const delay = random2 * 2; // 0s to 2s initial delay
+    
+    stars.push({ i, size, x, y, duration, delay });
+  }
+  return stars;
+};
+
+const STARS = generateStars();
+
+function RevolvingStars() {
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none flex items-center justify-center">
+      <motion.div
+        className="absolute"
+        style={{ width: "150vw", height: "150vw", minWidth: "1200px", minHeight: "1200px" }}
+        animate={{ rotate: 360 }}
+        transition={{ duration: 180, repeat: Infinity, ease: "linear" }}
+      >
+        {STARS.map((star) => (
+          <motion.div
+            key={star.i}
+            className="absolute rounded-full bg-[#191919] dark:bg-white dark:shadow-[0_0_6px_rgba(255,255,255,0.8)] shadow-[0_0_6px_rgba(0,0,0,0.1)]"
+            style={{
+              width: star.size,
+              height: star.size,
+              left: `${star.x}%`,
+              top: `${star.y}%`,
+            }}
+            animate={{
+              opacity: [0.4, 1, 0.4]
+            }}
+            transition={{
+              duration: star.duration,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: star.delay,
+            }}
+          />
+        ))}
+      </motion.div>
+    </div>
+  );
+}
+
+
 export function HeroSection() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -38,61 +95,41 @@ export function HeroSection() {
 
   return (
     <section id="home" className="relative min-h-[100dvh] overflow-hidden">
-      {/* Mobile Background */}
-      <Image
-        src="/hero-mobile.png"
-        alt="Mobile workspace"
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover object-center md:hidden"
-      />
-
-      {/* Desktop Background */}
-      <Image
-        src="/hero-workspace.png"
-        alt="Designer workspace with laptop"
-        fill
-        priority
-        sizes="100vw"
-        className="hidden object-cover md:block"
-      />
-
-      {/* Overlays */}
-      <div className="absolute inset-0 bg-black/45" />
-      <div className="absolute inset-x-0 top-0 h-40 sm:h-52 bg-gradient-to-b from-black/70 via-black/25 to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 h-32 sm:h-44 bg-gradient-to-t from-black/50 to-transparent" />
+      <RevolvingStars />
 
       {/* Header — fixed so logo + menu stay sticky on top across the whole page */}
       <header
-        className={`fixed inset-x-0 top-0 z-40 flex items-start justify-between px-4 py-4 sm:px-6 md:px-10 lg:px-14 transition-colors duration-300 ${
-          isScrolled ? "bg-black/70 backdrop-blur-md" : "bg-transparent"
+        className={`fixed inset-x-0 top-0 z-40 flex items-start justify-between px-4 py-4 sm:px-6 md:px-10 lg:px-14 transition-all duration-300 ${
+          isScrolled ? "bg-white/80 dark:bg-[#0f1115]/80 backdrop-blur-md shadow-sm dark:shadow-none border-b border-black/10 dark:border-white/10" : "bg-transparent"
         }`}
       >
         <motion.a
           href="#home"
-          className="flex items-start gap-2 text-[10px] sm:text-xs font-semibold uppercase leading-none text-white/90"
+          className="flex items-center"
           initial={{ opacity: 0, y: -12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55 }}
-          aria-label="Design Hive home"
+          aria-label="SNAP home"
         >
-          <span className="mt-0.5 grid h-4 w-4 grid-cols-2 gap-0.5">
-            <span className="rounded-[1px] bg-white" />
-            <span className="rounded-[1px] bg-white/50" />
-            <span className="rounded-[1px] bg-white/50" />
-            <span className="rounded-[1px] bg-white" />
-          </span>
-
-          <span className="flex flex-col">
-            <span>Design</span>
-            <span>Hive</span>
-          </span>
+          <Image
+            src="/snap-logo-light.png"
+            alt="SNAP Logo"
+            width={120}
+            height={48}
+            className="h-10 w-auto object-contain sm:h-12 dark:hidden"
+          />
+          <Image
+            src="/snap-logo-dark.png"
+            alt="SNAP Logo"
+            width={120}
+            height={48}
+            className="h-10 w-auto object-contain sm:h-12 hidden dark:block"
+          />
         </motion.a>
 
         {/* Menu toggle — swaps icon between Menu and X in place */}
         <motion.button
-          className="grid h-9 w-9 sm:h-10 sm:w-10 place-items-center rounded-md text-white/85 transition hover:bg-white/10 hover:text-white relative z-[60]"
+          className="grid h-9 w-9 sm:h-10 sm:w-10 place-items-center rounded-md text-[#191919] dark:text-white/85 transition hover:bg-black/5 dark:hover:bg-white/10 dark:hover:text-white relative z-[60]"
           type="button"
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           initial={{ opacity: 0, y: -12 }}
@@ -132,7 +169,7 @@ export function HeroSection() {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-[#111111]"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-[#f3efe3] dark:bg-[#111111]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -143,7 +180,7 @@ export function HeroSection() {
               type="button"
               aria-label="Close menu"
               onClick={() => setIsMenuOpen(false)}
-              className="absolute right-4 top-4 sm:right-6 sm:top-4 md:right-10 md:top-4 lg:right-14 grid h-9 w-9 sm:h-10 sm:w-10 place-items-center rounded-md text-white/85 transition hover:bg-white/10 hover:text-white"
+              className="absolute right-4 top-4 sm:right-6 sm:top-4 md:right-10 md:top-4 lg:right-14 grid h-9 w-9 sm:h-10 sm:w-10 place-items-center rounded-md text-[#191919] dark:text-white/85 transition hover:bg-black/5 dark:hover:bg-white/10 dark:hover:text-white"
             >
               <X size={22} strokeWidth={1.4} />
             </button>
@@ -155,7 +192,7 @@ export function HeroSection() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className="text-3xl sm:text-5xl font-semibold text-white/90 transition hover:text-white"
+                  className="text-3xl sm:text-5xl font-semibold text-[#191919] dark:text-white/90 transition hover:text-black dark:hover:text-white"
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 16 }}
@@ -170,73 +207,83 @@ export function HeroSection() {
       </AnimatePresence>
 
       {/* Hero Content */}
-      <div className="relative z-10 mx-auto flex min-h-[100dvh] w-full max-w-7xl flex-col items-center justify-center px-4 sm:px-6 md:px-10 lg:px-16 pt-16 pb-10 text-center">
+      <div className="relative z-10 mx-auto flex min-h-[100dvh] w-full max-w-7xl flex-col items-center justify-center px-4 sm:px-6 md:px-10 pt-20 pb-10 text-center">
+        
+        {/* Pill Badge */}
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.1 }}
+          className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#191919]/10 dark:border-white/10 bg-white/60 dark:bg-white/5 px-3 py-1.5 text-xs sm:text-sm font-medium text-[#191919] dark:text-white backdrop-blur-md shadow-sm"
+        >
+          <span className="grid size-4 shrink-0 place-items-center rounded-full bg-[#ff6148] text-[10px] text-white">
+            ✦
+          </span>
+          <span>Surat's Premier Chartered Accountants</span>
+        </motion.div>
+
+        {/* Main Headline */}
         <motion.h1
           className="
-            -mt-24
-            md:-mt-16
-            lg:-mt-10
-            max-w-[95%]
-            sm:max-w-4xl
-            lg:max-w-5xl
-            text-[22px]
-            sm:text-[36px]
-            md:text-[52px]
-            lg:text-[64px]
-            leading-[1.05]
+            max-w-4xl
+            text-[38px]
+            sm:text-5xl
+            md:text-6xl
+            lg:text-[72px]
             font-light
             tracking-tight
-            text-white
-            drop-shadow-[0_8px_22px_rgba(0,0,0,0.35)]
+            text-[#191919]
+            dark:text-white
+            leading-[1.05]
           "
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.15 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
         >
-          <span className="font-medium block"> Your Trusted Financial</span>
-
-          <span className="inline-block mt-1 border-b border-white/70 text-white/80">
+          <span className="font-medium block">Your Trusted Financial</span>
+          <span className="inline-block mt-1 border-b border-[#191919]/40 text-[#191919]/80 dark:border-white/70 dark:text-white/80 pb-1">
             Partners in Surat
           </span>
         </motion.h1>
 
+        {/* Subheadline */}
         <motion.p
           className="
-            mt-5
-            px-2
-            max-w-[280px]
-            sm:max-w-md
-            md:max-w-xl
-            text-[13px]
-            sm:text-sm
-            md:text-base
+            mt-6
+            max-w-2xl
+            text-sm
+            sm:text-base
+            md:text-lg
             leading-relaxed
-            text-white/85
+            text-[#5f5b52]
+            dark:text-gray-300
           "
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.28 }}
+          transition={{ duration: 0.7, delay: 0.3 }}
         >
-          SNAP & Associates Chartered Accountants specializing in Audit, Taxation & Financial Advisory. Helping businesses and individuals grow with clarity and confidence.
+          SNAP & Associates handles tax, audit, and advisory — powered by deep expertise and proactive strategies. Grow your business with clarity and confidence.
         </motion.p>
 
-        {/* Loader */}
+        {/* Call to Actions */}
         <motion.div
-          className="mt-10 sm:mt-16 md:mt-24 lg:mt-32 flex flex-col items-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.7, delay: 0.55 }}
+          className="mt-10 flex flex-col sm:flex-row items-center gap-4 sm:gap-6"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.4 }}
         >
-          <motion.div
-            className="mb-4 h-8 w-8 border border-white/20"
-            animate={{ rotate: 360 }}
-            transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-            style={{ clipPath: "polygon(50% 0%, 100% 86%, 0% 86%)" }}
-          />
-
-          <p className="text-[10px] sm:text-xs text-white/75">
-            Get a Free Consultation...
-          </p>
+          <a
+            href="#contact"
+            className="flex h-12 sm:h-14 items-center justify-center rounded-full bg-[#191919] dark:bg-white px-8 text-sm sm:text-base font-semibold text-white dark:text-[#191919] transition-transform hover:scale-105 active:scale-95 shadow-md"
+          >
+            Book a Meeting
+          </a>
+          <a
+            href="#process"
+            className="flex h-12 sm:h-14 items-center justify-center rounded-full border border-[#191919]/20 dark:border-white/20 bg-white/50 dark:bg-white/5 px-8 text-sm sm:text-base font-semibold text-[#191919] dark:text-white transition-colors hover:bg-black/5 dark:hover:bg-white/10 backdrop-blur-md"
+          >
+            See how it works
+          </a>
         </motion.div>
       </div>
     </section>

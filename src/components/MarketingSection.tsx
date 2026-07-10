@@ -70,7 +70,7 @@ function PaperNote({ quote, author }: { quote: string; author: string }) {
 function LeadTable() {
   return (
     <div className="w-full overflow-hidden rounded-[6px] bg-white shadow-[0_14px_28px_rgba(28,22,12,0.10)]">
-      <div className="grid grid-cols-[0.35fr_0.8fr_1fr_1.45fr] px-4 py-3 text-[9px] text-[#b0aca5]">
+      <div className="grid grid-cols-[0.35fr_0.8fr_1fr_1.45fr] px-4 py-3 text-xs text-[#b0aca5]">
         <span />
         <span>Guardian</span>
         <span>Lead stage</span>
@@ -78,7 +78,7 @@ function LeadTable() {
       </div>
       {leads.map(([name, stage, email]) => (
         <div
-          className="grid grid-cols-[0.35fr_0.8fr_1fr_1.45fr] items-center border-t border-[#eee9df] px-4 py-3 text-[10px]"
+          className="grid grid-cols-[0.35fr_0.8fr_1fr_1.45fr] items-center border-t border-[#eee9df] px-4 py-3 text-xs"
           key={name}
         >
           <span className="size-3 rounded-[3px] border border-[#d9d4ca]" />
@@ -110,10 +110,10 @@ function PredictiveCard() {
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.5, delay: 0.12 }}
     >
-      <h3 className="text-[16px] font-semibold leading-tight">
+      <h3 className="text-lg font-semibold leading-tight">
         Predictive Tax Planning
       </h3>
-      <p className="mt-4 max-w-[250px] text-[13px] leading-5 text-[#706b62]">
+      <p className="mt-4 max-w-[250px] text-sm sm:text-base leading-relaxed text-[#706b62]">
         Plan your taxes before the year ends, not after. We forecast your liability and maximize savings with smart, proactive strategies.
       </p>
 
@@ -130,24 +130,24 @@ function WebsitePreview() {
   ];
 
   return (
-    <div className="mx-auto mt-9 w-[205px] overflow-hidden rounded-[14px] border-[6px] border-[#e7e1d6] bg-white">
+    <div className="mx-auto mt-9 w-full max-w-[250px] overflow-hidden rounded-[14px] border-[6px] border-[#e7e1d6] bg-white">
       <div className="px-4 py-4">
-        <h4 className="text-[14px] font-bold leading-tight">
+        <h4 className="text-base font-bold leading-tight">
           Tax Planning Checklist
         </h4>
 
-        <p className="mt-2 text-[9px] leading-4 text-[#8b857c]">
+        <p className="mt-2 text-xs leading-5 text-[#8b857c]">
           Complete these steps to maximize your tax savings.
         </p>
 
-        <div className="mt-4 space-y-2">
+        <div className="mt-4 space-y-3">
           {checklist.map((item) => (
             <div
               key={item}
-              className="flex items-center gap-2 rounded-md border border-[#ece7dd] px-2 py-2"
+              className="flex items-center gap-2 rounded-md border border-[#ece7dd] px-3 py-2"
             >
               <input type="checkbox" className="h-3 w-3" />
-              <span className="text-[10px] font-medium">{item}</span>
+              <span className="text-xs font-medium">{item}</span>
             </div>
           ))}
         </div>
@@ -199,21 +199,21 @@ function TaxChecklistCard() {
   ];
 
   return (
-    <div className="rounded-[6px] bg-white p-5 shadow-[0_10px_24px_rgba(28,22,12,0.08)] lg:w-[250px]">
+    <div className="rounded-[6px] bg-white p-5 shadow-[0_10px_24px_rgba(28,22,12,0.08)] w-full max-w-[280px] lg:w-[280px]">
       <div className="flex items-center justify-between">
-        <h4 className="text-[13px] font-semibold text-[#706b62]">
+        <h4 className="text-sm font-bold text-[#706b62]">
           Tax Checklist
         </h4>
 
-        <span className="rounded bg-[#e8fff1] px-2 py-1 text-[10px] font-semibold text-green-600">
+        <span className="rounded bg-[#e8fff1] px-2 py-1 text-[11px] font-semibold text-green-600">
           Active
         </span>
       </div>
 
-      <div className="mt-5 space-y-3">
+      <div className="mt-5 space-y-4">
         {items.map((item) => (
-          <div key={item} className="flex items-center gap-2 text-[12px]">
-            <span className="grid size-5 place-items-center rounded bg-green-500 text-white">
+          <div key={item} className="flex items-center gap-3 text-sm">
+            <span className="grid size-5 shrink-0 place-items-center rounded bg-green-500 text-white">
               ✓
             </span>
             {item}
@@ -221,7 +221,7 @@ function TaxChecklistCard() {
         ))}
       </div>
 
-      <div className="mt-6 rounded bg-gray-100 p-3 text-[11px] text-gray-700 dark:bg-gray-800 dark:text-gray-200">
+      <div className="mt-6 rounded bg-gray-100 p-3 text-xs text-gray-700 dark:bg-gray-800 dark:text-gray-200">
         3 / 4 tasks completed
       </div>
     </div>
@@ -299,10 +299,10 @@ export function MarketingSection() {
           >
             <div className="grid min-h-[306px] gap-8 p-7 lg:grid-cols-[0.95fr_1.05fr]">
               <div>
-                <h3 className="max-w-[235px] text-[16px] font-semibold leading-tight">
+                <h3 className="max-w-[260px] text-lg font-semibold leading-tight">
                   Don&apos;t let a compliance deadline slip through the cracks
                 </h3>
-                <p className="mt-4 max-w-[260px] text-[13px] leading-5 text-[#706b62]">
+                <p className="mt-4 max-w-[260px] text-sm sm:text-base leading-relaxed text-[#706b62]">
                   We track all your GST, Income Tax, and audit deadlines — so you never face penalties or last-minute stress.
                 </p>
                 <div className="mt-10">
@@ -340,10 +340,10 @@ export function MarketingSection() {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.5 }}
           >
-            <h3 className="max-w-[220px] text-[16px] font-semibold leading-tight">
+            <h3 className="max-w-[240px] text-lg font-semibold leading-tight">
               Financial advisory built for business growth
             </h3>
-            <p className="mt-4 max-w-[250px] text-[13px] leading-5 text-[#706b62]">
+            <p className="mt-4 max-w-[280px] text-sm sm:text-base leading-relaxed text-[#706b62]">
               Plan your taxes before the year ends, not after. We forecast your liability and maximize savings with smart, proactive strategies.
             </p>
             <WebsitePreview />
@@ -370,9 +370,9 @@ export function MarketingSection() {
           >
             <div className="grid gap-7 p-7 lg:grid-cols-[0.92fr_1fr]">
               <div>
-                <h3 className="text-[16px] font-semibold">Smart tax planning made simple</h3>
+                <h3 className="text-lg font-semibold">Smart tax planning made simple</h3>
 
-                <p className="mt-4 max-w-[300px] text-[13px] leading-5 text-[#706b62]">
+                <p className="mt-4 max-w-[300px] text-sm sm:text-base leading-relaxed text-[#706b62]">
                   Stay ahead of deadlines and maximize deductions with a simple tax planning
                   checklist designed for individuals and businesses.
                 </p>

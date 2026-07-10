@@ -57,20 +57,22 @@ function ProcessCard({
     <motion.article
       className="
         group
-        rounded-2xl
+        relative
+        flex
+        flex-col
+        justify-between
+        overflow-hidden
+        rounded-3xl
         bg-white
-        p-4
+        p-6
+        sm:p-8
         shadow-sm
-        lg:rounded-none
-        lg:border-l
-        lg:border-t
-        lg:border-r-0
-        lg:border-b-0
-        lg:bg-transparent
-        lg:shadow-none
-        lg:p-0
-        lg:pt-1
-        lg:pl-8
+        border border-black/5
+        transition-all
+        duration-300
+        hover:shadow-lg
+        dark:bg-[#0f172a]
+        dark:border-white/10
       "
       initial={{
         opacity: 0,
@@ -95,34 +97,37 @@ function ProcessCard({
         ease: "easeOut",
       }}
     >
-     <span className="block text-4xl font-normal leading-none tracking-normal text-[#191919] dark:text-white sm:text-5xl">
-        {step.number}
-      </span>
+      <div className="flex items-center justify-between">
+        <span className="block text-4xl font-normal leading-none tracking-normal text-[#191919] dark:text-white sm:text-5xl">
+          {step.number}
+        </span>
+        <div className="h-px flex-1 ml-6 bg-black/5 dark:bg-white/10"></div>
+      </div>
 
-      <div className="mt-6 sm:mt-12 lg:mt-16">
-        <h3 className="text-xs font-semibold text-[#1f1f1f] dark:text-white">
+      <div className="mt-12 flex flex-col flex-grow">
+        <h3 className="text-sm sm:text-base font-semibold text-[#1f1f1f] dark:text-white">
           {step.title}
         </h3>
 
-        <p className="mt-3 min-h-20 text-xs leading-5 text-[#5f5b52] dark:text-gray-300">
+        <p className="mt-3 min-h-20 text-xs sm:text-sm leading-relaxed text-[#5f5b52] dark:text-gray-300">
           {step.description}
         </p>
 
         <a
           href="#"
-          className="mt-4 inline-flex border-b border-[#191919]/60 dark:border-white/60 text-xs font-semibold leading-5 text-[#191919] dark:text-white transition group-hover:opacity-70"
+          className="mt-4 inline-flex border-b border-[#191919]/60 dark:border-white/60 text-xs sm:text-sm font-semibold leading-5 text-[#191919] dark:text-white transition group-hover:opacity-70"
         >
           Learn more →
         </a>
       </div>
 
-     <div className="mt-6 overflow-hidden rounded-xl bg-white dark:bg-[#111827] shadow-sm dark:shadow-none lg:rounded-none lg:bg-transparent lg:dark:bg-transparent lg:shadow-none">
+      <div className="mt-10 overflow-hidden rounded-xl border border-black/5 dark:border-white/10">
         <Image
           src={step.image}
           alt={step.alt}
           width={640}
           height={420}
-          className="aspect-[1.35/1] sm:aspect-[1.52/1] w-full object-cover transition duration-500 group-hover:scale-105"
+          className="aspect-[4/3] w-full object-cover transition duration-700 group-hover:scale-105"
         />
       </div>
     </motion.article>
@@ -131,13 +136,11 @@ function ProcessCard({
 
 export function ProcessSection() {
   return (
-   <section className="theme-section relative overflow-hidden border-b border-[#191919]/10 dark:border-white/10 bg-[#f3efe3] dark:bg-[#050814] px-4 py-12 sm:px-8 sm:py-18 lg:px-8" id="process">
-      <div className="pointer-events-none absolute inset-y-0 left-[15%] hidden w-px bg-[#191919]/8 dark:bg-white/10 lg:block" />
-      <div className="pointer-events-none absolute inset-y-0 right-[15%] hidden w-px bg-[#191919]/8 dark:bg-white/10 lg:block" />
+    <section className="theme-section relative overflow-hidden border-b border-[#191919]/10 dark:border-white/10 bg-[#f3efe3] dark:bg-[#050814] px-5 py-16 sm:px-8 sm:py-24" id="process">
 
       <div className="mx-auto max-w-[1240px]">
         <motion.p
-          className="inline-flex items-center gap-1 text-xs font-semibold text-[#ff6148]"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-[#ff6148]"
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
@@ -157,14 +160,14 @@ export function ProcessSection() {
          Our work follows a clear and structured approach, balancing innovation with commercial and technical excellence.
         </motion.h2>
 
-        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0">
+        <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
           {processSteps.map((step, index) => (
             <ProcessCard key={step.number} step={step} index={index} />
           ))}
         </div>
 
         <motion.p
-          className="mx-auto mt-12 max-w-xs text-center text-xs leading-5 text-[#68645b]"
+          className="mx-auto mt-12 max-w-sm text-center text-sm leading-relaxed text-[#68645b]"
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.6 }}

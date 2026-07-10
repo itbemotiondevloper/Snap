@@ -83,7 +83,7 @@ function LogoMark({ name }: { name: LogoName }) {
 export function LogoStripSection() {
   return (
     <motion.section
-      className="theme-section overflow-hidden border-y border-[#191919]/10 dark:border-white/10 bg-[#f3efe3] dark:bg-[#050814] py-3"
+      className="theme-section overflow-hidden border-y border-[#191919]/10 dark:border-white/10 bg-[#f3efe3] dark:bg-[#050814] py-6 sm:py-8"
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.25 }}
@@ -94,7 +94,7 @@ export function LogoStripSection() {
         animate={{ x: ["0%", "-50%"] }}
         transition={{
           repeat: Infinity,
-          duration: 25,
+          duration: 35,
           ease: "linear",
         }}
       >

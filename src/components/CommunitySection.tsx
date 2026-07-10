@@ -80,7 +80,7 @@ useEffect(() => {
   return () => clearInterval(interval);
 }, []);
   return (
-    <section className="theme-section relative overflow-hidden border-y border-[#191919]/10 bg-[#f3efe3] px-4 pb-12 pt-8 sm:px-8 sm:pb-20 lg:px-10" id="about">
+    <section className="theme-section relative overflow-hidden border-y border-[#191919]/10 dark:border-white/10 bg-[#f3efe3] dark:bg-[#050814] px-4 pb-12 pt-8 sm:px-8 sm:pb-20 lg:px-10" id="about">
       <div className="mx-auto max-w-[900px]">
         <motion.h2
        className="max-w-[560px] text-4xl sm:text-5xl font-semibold leading-[1.08] tracking-tight text-[#171717] dark:text-white"
@@ -91,17 +91,17 @@ useEffect(() => {
         </motion.h2>
 
         <motion.div
-          className="mt-10 grid grid-cols-3 gap-3 sm:mt-[68px] sm:grid-cols-[1.05fr_1.05fr_0.8fr] sm:gap-[108px]"
+          className="mt-12 grid grid-cols-3 gap-4 sm:mt-20 sm:grid-cols-3 sm:gap-12 md:gap-16 lg:grid-cols-[1.05fr_1.05fr_0.8fr]"
           initial={{ opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
         >
           {metrics.map((metric) => (
             <div key={metric.label}>
-              <strong className="block text-[28px] sm:text-[62px]">
+              <strong className="block text-3xl sm:text-5xl md:text-6xl text-[#191919] dark:text-white">
                 <Counter target={metric.value} suffix={metric.suffix} />
               </strong>
 
-              <span className="mt-1 block text-[9px] sm:text-[11px]">
+              <span className="mt-2 block text-xs sm:text-sm font-medium tracking-wide text-gray-600 dark:text-gray-400">
                 {metric.label}
               </span>
             </div>
@@ -120,14 +120,14 @@ useEffect(() => {
       duration: 1.2,
       ease: "easeInOut",
     }}
-    className="rounded-3xl bg-white shadow-xl p-4 sm:p-6 md:p-8"
+    className="rounded-3xl bg-white dark:bg-[#0f172a] shadow-xl p-4 sm:p-6 md:p-8 border border-black/5 dark:border-white/10"
   >
    
 
-    <div className="grid gap-8 md:grid-cols-[350px_1fr] md:gap-[64px]">
+    <div className="grid gap-8 md:grid-cols-[minmax(280px,350px)_1fr] md:gap-[64px]">
       
       {/* Dynamic Image */}
-      <div className="mx-auto w-full max-w-[287px] overflow-hidden rounded-2xl bg-[#c7a78e] shadow-lg">
+      <div className="mx-auto w-full sm:max-w-sm md:max-w-none overflow-hidden rounded-2xl bg-[#c7a78e] shadow-lg">
         <Image
           src={cards[activeCard].image}
           alt={cards[activeCard].name}
@@ -138,22 +138,22 @@ useEffect(() => {
       </div>
 
       {/* Content */}
-      <article className="rounded-2xl p-4 sm:p-8">
-        <h3 className="text-[24px] sm:text-[30px] font-semibold">
+      <article className="rounded-2xl p-4 sm:p-6 md:p-8">
+        <h3 className="text-[24px] sm:text-[30px] font-semibold text-[#191919] dark:text-white">
           {cards[activeCard].title}
         </h3>
 
-        <p className="mt-6 text-[12px] sm:text-[14px] leading-7 text-gray-600">
+        <p className="mt-6 text-sm sm:text-base leading-relaxed text-[#191919]/80 dark:text-gray-300">
           {cards[activeCard].desc}
         </p>
 
-        <div className="mt-11 text-right">
+        <div className="mt-8 sm:mt-12 text-right">
        <p
-  className={`${msMadi.className} text-[20px] sm:text-[40px] leading-none`}
+  className={`${msMadi.className} text-3xl sm:text-4xl text-[#191919] dark:text-white leading-none`}
 >
   {cards[activeCard].name}
 </p>
-          <p className="mt-4 text-[9px] uppercase tracking-[3px] text-gray-500">
+          <p className="mt-2 sm:mt-4 text-[10px] sm:text-[11px] font-medium uppercase tracking-[3px] text-[#191919]/60 dark:text-gray-400">
             {cards[activeCard].role}
           </p>
         </div>
@@ -170,8 +170,8 @@ useEffect(() => {
         onClick={() => setActiveCard(index)}
         className={`transition-all ${
           activeCard === index
-            ? "h-3 w-8 rounded-full bg-black"
-            : "h-3 w-3 rounded-full bg-gray-400"
+            ? "h-3 w-8 rounded-full bg-black dark:bg-white"
+            : "h-3 w-3 rounded-full bg-gray-400 dark:bg-gray-600"
         }`}
       />
     ))}

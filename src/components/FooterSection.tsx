@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { ArrowUpRight, X, Phone, Mail } from "lucide-react";
 import { FaLinkedinIn, FaFacebookF, FaInstagram } from "react-icons/fa";
 const footerColumns = [
@@ -34,31 +35,6 @@ const socialLinks = [
   },
 ];
 
-function UnlearnMark({ compact = false }: { compact?: boolean }) {
-  const rows = compact
-    ? [18, 23, 22, 25, 21]
-    : [128, 128, 128, 128, 112, 92];
-
-  return (
-    <div
-      className={`overflow-hidden ${compact ? "h-4 w-5" : "h-32 w-32"}`}
-      style={{ clipPath: "ellipse(50% 50% at 50% 50%)" }}
-    >
-      <div className={compact ? "space-y-[2px]" : "space-y-[11px]"}>
-        {rows.map((width, index) => (
-          <span
-            key={index}
-            className={`block bg-white ${compact ? "h-[2px]" : "h-2"}`}
-            style={{
-              width,
-              marginLeft: index < 4 ? 0 : index === 4 ? 18 : 35,
-            }}
-          />
-        ))}
-      </div>
-    </div>
-  );
-}
 
 function FooterColumn({
   title,
@@ -69,16 +45,16 @@ function FooterColumn({
 }) {
   return (
     <div>
-      <h3 className="text-[10px] font-medium uppercase tracking-[0.08em] text-white/42">
+      <h3 className="text-[10px] font-semibold uppercase tracking-[0.08em] text-[#191919]/50 dark:text-white/42">
         {title}
       </h3>
 
-      <div className="mt-5 space-y-3">
+      <div className="mt-5 space-y-4">
         {links.map((link) => (
           <a
             key={link}
             href="#"
-            className="block text-xs text-white/78 transition hover:text-white"
+            className="block text-sm font-medium text-[#191919]/80 dark:text-white/80 transition hover:text-[#ff6148] dark:hover:text-white"
           >
             {link}
           </a>
@@ -90,11 +66,11 @@ function FooterColumn({
 function ContactColumn() {
   return (
     <div>
-      <h3 className="text-[10px] font-medium uppercase tracking-[0.08em] text-white/42">
+      <h3 className="text-[10px] font-semibold uppercase tracking-[0.08em] text-[#191919]/50 dark:text-white/42">
         Contact
       </h3>
 
-      <div className="mt-5 space-y-4 text-xs leading-6 text-white/78">
+      <div className="mt-5 space-y-4 text-sm font-medium leading-relaxed text-[#191919]/80 dark:text-white/80">
         <p>
           2028-2029, World Trade Center,
           Near Udhna Darwaja, Ring Road,
@@ -102,12 +78,12 @@ function ContactColumn() {
         </p>
 
         <div className="flex items-center gap-2">
-          <Phone size={14} className="text-white" />
+          <Phone size={14} className="text-[#ff6148]" />
           <span>+91 98985 47188</span>
         </div>
 
         <div className="flex items-center gap-2">
-          <Mail size={14} className="text-white" />
+          <Mail size={14} className="text-[#ff6148]" />
           <span>casagar98@gmail.com</span>
         </div>
       </div>
@@ -116,51 +92,46 @@ function ContactColumn() {
 }
 export function FooterSection() {
   return (
-    <footer className="bg-[#050814] text-white">
+    <footer className="theme-section bg-[#f3efe3] dark:bg-[#050814] text-[#191919] dark:text-white border-t border-[#191919]/10 dark:border-white/10">
       <div className="mx-auto max-w-[1214px]">
         {/* Top */}
-        <div className="grid border-b border-white/10 lg:min-h-[250px] lg:grid-cols-[170px_296px_1fr_162px]">
-          <div className="hidden border-r border-white/10 lg:block" />
+        <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between border-b border-[#191919]/10 dark:border-white/10 py-12 lg:py-20 px-6 lg:px-16 xl:px-[170px] gap-12">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.94 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.55 }}
+          >
+            <Image src="/snap-logo-light.png" alt="SNAP Logo" width={160} height={64} className="object-contain dark:hidden" />
+            <Image src="/snap-logo-dark.png" alt="SNAP Logo" width={160} height={64} className="object-contain hidden dark:block" />
+          </motion.div>
 
-          <div className="flex justify-center py-10 lg:items-center lg:border-r lg:border-white/10">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.94 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.55 }}
-            >
-              <UnlearnMark />
-            </motion.div>
-          </div>
-
-          <div className="px-6 pb-12 text-center lg:px-[50px] lg:py-12 lg:text-left">
-         <h2 className="mx-auto max-w-[520px] text-[26px] leading-[1.2] sm:text-[38px]">
-  <span className="text-[#b6a7ff]">Trusted financial partner</span> for
-  businesses and individuals
-</h2>
+          <div className="text-center lg:text-left max-w-xl">
+            <h2 className="text-3xl sm:text-4xl font-semibold leading-tight">
+              <span className="text-[#ff6148]">Trusted financial partner</span> for
+              businesses and individuals
+            </h2>
 
             <a
               href="#"
-              className="mt-9 inline-flex items-center gap-3 text-xs text-white/90"
+              className="mt-8 inline-flex items-center gap-3 text-sm sm:text-base font-medium text-[#191919] dark:text-white transition hover:opacity-80"
             >
               Contact us
-              <span className="grid size-8 place-items-center bg-white/10">
+              <span className="grid size-8 place-items-center rounded-full bg-[#191919]/5 dark:bg-white/10">
                 <ArrowUpRight size={14} />
               </span>
             </a>
           </div>
-
-          <div className="hidden border-l border-white/10 lg:block" />
         </div>
 
         {/* Middle */}
-        <div className="grid gap-10 px-6 py-10 sm:grid-cols-2 lg:grid-cols-[296px_190px_152px_105px_1fr] lg:px-[170px]">
+        <div className="grid gap-12 px-6 py-16 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10 lg:px-16 xl:px-[170px]">
           <div className="sm:col-span-2 lg:col-span-1">
             <a
               href="#"
               className="inline-flex items-center gap-2 text-[17px] font-bold uppercase tracking-[-0.04em]"
             >
-              <UnlearnMark compact />
-          SNAP & Associates
+              <Image src="/snap-logo-light.png" alt="SNAP Logo" width={80} height={32} className="object-contain dark:hidden" />
+              <Image src="/snap-logo-dark.png" alt="SNAP Logo" width={80} height={32} className="object-contain hidden dark:block" />
             </a>
           </div>
 
@@ -185,27 +156,27 @@ export function FooterSection() {
   <ContactColumn />
 </motion.div>
           <div>
-            <h3 className="text-[10px] font-medium uppercase tracking-[0.08em] text-white/42">
+            <h3 className="text-[10px] font-semibold uppercase tracking-[0.08em] text-[#191919]/50 dark:text-white/42">
               Connect
             </h3>
 
             <div className="mt-5 flex gap-3">
-             {socialLinks.map((social) => (
-  <a
-    key={social.label}
-    href={social.href}
-    className="grid size-11 place-items-center rounded-full bg-black/10 hover:bg-black hover:text-white"
-  >
-    {social.icon}
-  </a>
-))}
+              {socialLinks.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  className="grid size-11 place-items-center rounded-full bg-[#191919]/5 hover:bg-[#ff6148] hover:text-white dark:bg-white/10 dark:hover:bg-[#ff6148] transition-colors"
+                >
+                  {social.icon}
+                </a>
+              ))}
             </div>
           </div>
         </div>
 
         {/* Bottom */}
-        <div className="flex flex-col gap-4 px-6 pb-6 text-[10px] text-white/42 md:flex-row md:justify-between lg:px-[170px]">
-          <p>&copy; 2026  All rights reserved.</p>
+        <div className="flex flex-col gap-4 px-6 pb-8 pt-4 text-[11px] font-medium text-[#191919]/50 dark:text-white/42 md:flex-row md:justify-between lg:px-16 xl:px-[170px]">
+          <p>&copy; 2026 SNAP & Associates. All rights reserved.</p>
 
           <div className="flex flex-wrap gap-6 md:gap-12">
             {/* <a href="#" className="transition hover:text-white">
