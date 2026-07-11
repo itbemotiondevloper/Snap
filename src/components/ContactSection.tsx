@@ -77,7 +77,7 @@ export function ContactSection() {
   };
 
   return (
-    <section className="theme-section border-b border-[#191919]/10 dark:border-white/10 bg-[#f3efe3] dark:bg-[#050814] px-5 py-16 sm:px-8 sm:py-24">
+    <section className="theme-section border-b border-[#191919]/10 dark:border-white/10 bg-[#ffffff] dark:bg-[#050814] px-5 py-16 sm:px-8 sm:py-24">
       <div
         className="mx-auto grid max-w-4xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center"
         id="contact"

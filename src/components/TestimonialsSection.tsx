@@ -44,13 +44,53 @@ const testimonials = [
     company: "Jain Realty",
     avatar: "/avatar-5.png",
   },
+  {
+    quote:
+      "Their financial advisory team helped us navigate our recent merger smoothly, ensuring strict regulatory compliance.",
+    name: "Vikram Singh",
+    role: "Managing Director",
+    company: "Singh Logistics",
+    avatar: "/avatar-6.png",
+  },
+  {
+    quote:
+      "Unmatched expertise in direct taxation. They've optimized our tax structure and saved us significant resources over the years.",
+    name: "Ananya Gupta",
+    role: "CEO",
+    company: "TechFlow",
+    avatar: "/avatar-7.png",
+  },
+  {
+    quote:
+      "SNAP & Associates has been instrumental in our company's accounting automation process. Excellent support and dedication.",
+    name: "Rohan Mehta",
+    role: "Operations Head",
+    company: "Innovate Inc",
+    avatar: "/avatar-8.png",
+  },
+  {
+    quote:
+      "Highly recommended for their profound knowledge in retail financing and cooperative structuring. Very dependable partners.",
+    name: "Meera Joshi",
+    role: "Chairperson",
+    company: "Apex Society",
+    avatar: "/avatar-9.png",
+  },
+  {
+    quote:
+      "A highly professional and responsive team. Our GST audits and appeals have never been handled so seamlessly before.",
+    name: "Arjun Reddy",
+    role: "Finance Manager",
+    company: "BuildRight Construction",
+    avatar: "/avatar-10.png",
+  },
 ];
 
 const mobileTestimonials = [...testimonials, ...testimonials];
 
 export function TestimonialsSection() {
   return (
-    <section className="theme-section mt-10 overflow-hidden bg-[#f3efe3] dark:bg-[#050814]" id="testimonials">
+    <section className="theme-section mt-10 overflow-hidden bg-[#ffffff] dark:bg-[#050814]" id="testimonials">
       {/* MOBILE AUTO SCROLL */}
       <div className="md:hidden overflow-hidden py-10">
         <motion.div
@@ -96,12 +136,12 @@ export function TestimonialsSection() {
         </motion.div>
       </div>
 
-      {/* TABLET & DESKTOP GRID */}
-      <div className="hidden md:flex xl:grid xl:grid-cols-5 w-full overflow-x-auto xl:overflow-x-visible snap-x snap-mandatory px-5 xl:px-8 py-16 gap-6 scrollbar-hide">
+      {/* TABLET & DESKTOP SCROLL */}
+      <div className="hidden md:flex w-full overflow-x-auto snap-x snap-mandatory px-5 xl:px-8 py-16 gap-6 scrollbar-hide">
         {testimonials.map((testimonial, index) => (
           <motion.article
             key={`${testimonial.name}-${testimonial.company}-${index}`}
-            className="flex flex-col justify-between rounded-3xl border border-black/5 dark:border-white/10 bg-white dark:bg-[#0f172a] p-6 xl:p-8 shadow-sm transition-shadow hover:shadow-lg shrink-0 w-[340px] lg:w-[380px] xl:w-auto snap-center"
+            className="flex flex-col justify-between rounded-3xl border border-black/5 dark:border-white/10 bg-white dark:bg-[#0f172a] p-6 xl:p-8 shadow-sm transition-shadow hover:shadow-lg shrink-0 w-[340px] lg:w-[380px] xl:w-[calc((100%_-_10rem)_/_5)] snap-center"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}

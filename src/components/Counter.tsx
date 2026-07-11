@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { useInView } from "framer-motion";
 
 interface CounterProps {
   end: number;
@@ -14,8 +15,15 @@ export default function Counter({
   duration = 2000,
 }: CounterProps) {
   const [count, setCount] = useState(0);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { amount: 0.5 });
 
   useEffect(() => {
+    if (!isInView) {
+      setCount(0);
+      return;
+    }
+
     let start = 0;
     const increment = end / (duration / 16);
 
@@ -31,10 +39,10 @@ export default function Counter({
     }, 16);
 
     return () => clearInterval(timer);
-  }, [end, duration]);
+  }, [end, duration, isInView]);
 
   return (
-    <span>
+    <span ref={ref}>
       {count}
       {suffix}
     </span>

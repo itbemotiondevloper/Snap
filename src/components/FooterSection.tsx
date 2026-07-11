@@ -92,7 +92,7 @@ function ContactColumn() {
 }
 export function FooterSection() {
   return (
-    <footer className="theme-section bg-[#f3efe3] dark:bg-[#050814] text-[#191919] dark:text-white border-t border-[#191919]/10 dark:border-white/10">
+    <footer className="theme-section bg-[#ffffff] dark:bg-[#050814] text-[#191919] dark:text-white border-t border-[#191919]/10 dark:border-white/10">
       <div className="mx-auto max-w-[1214px]">
         {/* Top */}
         <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between border-b border-[#191919]/10 dark:border-white/10 py-12 lg:py-20 px-6 lg:px-16 xl:px-[170px] gap-12">

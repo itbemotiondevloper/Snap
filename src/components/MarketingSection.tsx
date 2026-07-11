@@ -230,7 +230,7 @@ function TaxChecklistCard() {
 
 export function MarketingSection() {
   return (
-    <section className="theme-section border-b border-[#191919]/10 bg-[#f3efe3] px-5 py-16 sm:px-8 sm:py-20" id="advantage">
+    <section className="theme-section border-b border-[#191919]/10 bg-[#ffffff] px-5 py-16 sm:px-8 sm:py-20" id="advantage">
       <div className="mx-auto max-w-[940px]">
         <motion.div
           className="text-center"

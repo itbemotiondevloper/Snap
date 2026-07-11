@@ -3,9 +3,9 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #f7f4ee;
+  --background: #ffffff;
   --foreground: #17211f;
-  --section-bg: #f3efe3;
+  --section-bg: #ffffff;
   --section-fg: #191919;
   --card-bg: #ffffff;
   --muted-fg: #706b62;

@@ -136,7 +136,7 @@ function ProcessCard({
 
 export function ProcessSection() {
   return (
-    <section className="theme-section relative overflow-hidden border-b border-[#191919]/10 dark:border-white/10 bg-[#f3efe3] dark:bg-[#050814] px-5 py-16 sm:px-8 sm:py-24" id="process">
+    <section className="theme-section relative overflow-hidden border-b border-[#191919]/10 dark:border-white/10 bg-white dark:bg-[#050814] px-5 py-16 sm:px-8 sm:py-24" id="process">
 
       <div className="mx-auto max-w-[1240px]">
         <motion.p
@@ -167,7 +167,7 @@ export function ProcessSection() {
         </div>
 
         <motion.p
-          className="mx-auto mt-12 max-w-sm text-center text-sm leading-relaxed text-[#68645b]"
+          className="mx-auto mt-12 w-full text-center text-sm leading-relaxed text-[#68645b]"
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.6 }}

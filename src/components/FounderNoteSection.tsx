@@ -24,7 +24,7 @@ const photos = [
 
 export function FounderNoteSection() {
   return (
-  <section className="theme-section bg-[#f3efe3] dark:bg-[#050814] px-5 py-12 sm:px-8 sm:py-14">
+  <section className="theme-section bg-[#ffffff] dark:bg-[#050814] px-5 py-12 sm:px-8 sm:py-14">
       <div className="mx-auto max-w-[940px]">
         <motion.h2
           className="relative mx-auto max-w-4xl text-center text-[34px] font-semibold leading-tight tracking-normal text-[#171b26] dark:text-white sm:text-[42px]"
@@ -115,7 +115,7 @@ export function FounderNoteSection() {
         </motion.article>
 
     <motion.div
-  className="relative mx-auto w-full max-w-[360px] lg:h-[360px] lg:mt-6"
+  className="relative mx-auto w-full"
   initial={{ opacity: 0, x: 24 }}
   whileInView={{ opacity: 1, x: 0 }}
   viewport={{ once: true, amount: 0.35 }}
@@ -155,7 +155,7 @@ export function FounderNoteSection() {
   </div>
 </div>
   {/* DESKTOP */}
-  <div className="relative hidden h-[360px] lg:block">
+  <div className="relative hidden lg:block" style={{ height: '540px', width: '460px' }}>
     {photos.map((photo, index) => (
       <motion.div
         key={photo.src}
@@ -173,10 +173,10 @@ export function FounderNoteSection() {
         }}
         className="absolute overflow-hidden rounded-md border-[3px] border-[#191919] bg-white shadow-sm transition duration-500 hover:shadow-xl"
         style={{
-          width: index === 1 ? 205 : 148,
-          height: index === 1 ? 225 : 190,
-          left: index === 0 ? 0 : index === 1 ? 138 : 43,
-          top: index === 0 ? 0 : index === 1 ? 0 : 198,
+          width: index === 1 ? 280 : 200,
+          height: index === 1 ? 310 : 260,
+          left: index === 0 ? 0 : index === 1 ? 180 : 55,
+          top: index === 0 ? 0 : index === 1 ? 0 : 275,
           zIndex: index === 1 ? 3 : index === 0 ? 2 : 1,
         }}
       >
