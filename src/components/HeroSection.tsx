@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
@@ -15,62 +15,338 @@ const menuItems = [
   { label: "Contact", href: "#contact" },
 ];
 
-const generateStars = () => {
-  const stars = [];
-  for (let i = 0; i < 250; i++) {
-    // Deterministic pseudo-random using index 'i' to avoid hydration mismatches
-    const random1 = Math.abs((Math.sin(i * 12.9898) * 43758.5453) % 1);
-    const random2 = Math.abs((Math.cos(i * 78.233) * 43758.5453) % 1);
-    const random3 = Math.abs((Math.sin(i * 45.123) * 43758.5453) % 1);
+function InteractiveConstellation() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
-    const size = random1 * 4 + 2; // 2px to 6px
-    const x = random2 * 100;
-    const y = random3 * 100;
-    const duration = (random1 * 2) + 3; // 3s to 5s pulsing duration
-    const delay = random2 * 2; // 0s to 2s initial delay
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const container = containerRef.current;
+    if (!canvas || !container) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let animationFrameId: number;
+    let width = 0;
+    let height = 0;
     
-    stars.push({ i, size, x, y, duration, delay });
-  }
-  return stars;
-};
+    interface Particle {
+      angle: number;
+      distance: number;
+      angularSpeed: number;
+      wobbleSpeed: number;
+      wobbleRange: number;
+      wobblePhase: number;
+      baseX: number;
+      baseY: number;
+      x: number;
+      y: number;
+      size: number;
+      depth: number;
+      baseOpacity: number;
+    }
 
-const STARS = generateStars();
+    let particles: Particle[] = [];
 
-function RevolvingStars() {
+    const mouse = {
+      x: null as number | null,
+      y: null as number | null,
+      targetX: null as number | null,
+      targetY: null as number | null,
+    };
+
+    const isTouch = typeof window !== "undefined" && ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+
+    const getParticleCount = (w: number) => {
+      if (isTouch) return 90;
+      if (w < 640) return 90;
+      if (w < 1024) return 180;
+      return 300;
+    };
+
+    const getInteractionRadius = (w: number) => {
+      if (isTouch) return 0;
+      if (w < 640) return 80;
+      return 130;
+    };
+
+    const initParticles = (w: number, h: number) => {
+      const count = getParticleCount(w);
+      particles = [];
+      const cx = w / 2;
+      const cy = h / 2;
+      const maxDistance = Math.sqrt(cx * cx + cy * cy) * 1.1;
+
+      for (let i = 0; i < count; i++) {
+        let depth = 0.8;
+        let size = 1.8;
+        let baseOpacity = 0.55;
+        const layerRand = Math.random();
+
+        if (layerRand < 0.3) {
+          depth = 0.4;
+          size = Math.random() * 0.6 + 0.8;
+          baseOpacity = 0.35;
+        } else if (layerRand < 0.85) {
+          depth = 0.8;
+          size = Math.random() * 0.6 + 1.5;
+          baseOpacity = 0.55;
+        } else {
+          depth = 1.25;
+          size = Math.random() * 0.8 + 2.4;
+          baseOpacity = 0.75;
+        }
+
+        const distance = Math.sqrt(Math.random()) * maxDistance;
+        const angle = Math.random() * Math.PI * 2;
+        const angularSpeed = (0.00002 + Math.random() * 0.00005) * depth;
+
+        particles.push({
+          angle,
+          distance,
+          angularSpeed,
+          wobbleSpeed: 0.005 + Math.random() * 0.01,
+          wobbleRange: 5 + Math.random() * 15,
+          wobblePhase: Math.random() * Math.PI * 2,
+          baseX: 0,
+          baseY: 0,
+          x: 0,
+          y: 0,
+          size,
+          depth,
+          baseOpacity,
+        });
+      }
+
+      particles.forEach(p => {
+        const currentDist = p.distance + Math.sin(p.wobblePhase) * p.wobbleRange;
+        p.baseX = cx + Math.cos(p.angle) * currentDist;
+        p.baseY = cy + Math.sin(p.angle) * currentDist;
+        p.x = p.baseX;
+        p.y = p.baseY;
+      });
+    };
+
+    const resize = () => {
+      const rect = container.getBoundingClientRect();
+      width = rect.width;
+      height = rect.height;
+
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      ctx.scale(dpr, dpr);
+
+      initParticles(width, height);
+    };
+
+    window.addEventListener("resize", resize);
+    resize();
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (isTouch) return;
+      const rect = canvas.getBoundingClientRect();
+      mouse.targetX = e.clientX - rect.left;
+      mouse.targetY = e.clientY - rect.top;
+    };
+
+    const handleMouseLeave = () => {
+      mouse.targetX = null;
+      mouse.targetY = null;
+    };
+
+    let clickImpact = 0;
+    let clickX = 0;
+    let clickY = 0;
+
+    const handleClick = (e: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      clickX = e.clientX - rect.left;
+      clickY = e.clientY - rect.top;
+      clickImpact = 1.0;
+    };
+
+    const section = container.closest("section");
+    if (section) {
+      section.addEventListener("mousemove", handleMouseMove);
+      section.addEventListener("mouseleave", handleMouseLeave);
+      section.addEventListener("click", handleClick);
+    }
+
+    const easeMouse = () => {
+      if (mouse.targetX !== null && mouse.targetY !== null) {
+        if (mouse.x === null || mouse.y === null) {
+          mouse.x = mouse.targetX;
+          mouse.y = mouse.targetY;
+        } else {
+          mouse.x += (mouse.targetX - mouse.x) * 0.12;
+          mouse.y += (mouse.targetY - mouse.y) * 0.12;
+        }
+      } else {
+        mouse.x = null;
+        mouse.y = null;
+      }
+    };
+
+    const loop = () => {
+      ctx.clearRect(0, 0, width, height);
+
+      const isDark = document.documentElement.classList.contains("dark");
+      
+      const particleColor = isDark ? "rgba(255, 255, 255, " : "rgba(80, 80, 80, ";
+      const glowColor = isDark ? "rgba(59, 130, 246, " : "rgba(100, 100, 100, ";
+      const lineColor = isDark ? "rgba(255, 255, 255, " : "rgba(80, 80, 80, ";
+
+      easeMouse();
+
+      if (clickImpact > 0.01) {
+        clickImpact *= 0.93;
+      } else {
+        clickImpact = 0;
+      }
+
+      const radius = getInteractionRadius(width);
+      const cx = width / 2;
+      const cy = height / 2;
+
+      particles.forEach(p => {
+        p.angle += p.angularSpeed;
+        p.wobblePhase += p.wobbleSpeed;
+
+        const currentDist = p.distance + Math.sin(p.wobblePhase) * p.wobbleRange;
+        p.baseX = cx + Math.cos(p.angle) * currentDist;
+        p.baseY = cy + Math.sin(p.angle) * currentDist;
+
+        let targetX = p.baseX;
+        let targetY = p.baseY;
+        let hoverForce = 0;
+
+        if (mouse.x !== null && mouse.y !== null && radius > 0) {
+          const dx = p.x - mouse.x;
+          const dy = p.y - mouse.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < radius) {
+            hoverForce = (radius - dist) / radius;
+            const maxRepel = 24 * p.depth;
+            const angleX = dist > 0 ? dx / dist : 0;
+            const angleY = dist > 0 ? dy / dist : 0;
+            
+            targetX += angleX * hoverForce * maxRepel;
+            targetY += angleY * hoverForce * maxRepel;
+          }
+        }
+
+        if (clickImpact > 0) {
+          const dx = p.x - clickX;
+          const dy = p.y - clickY;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const clickRadius = 260;
+
+          if (dist < clickRadius) {
+            const clickForce = (clickRadius - dist) / clickRadius;
+            const angleX = dist > 0 ? dx / dist : 0;
+            const angleY = dist > 0 ? dy / dist : 0;
+            
+            targetX += angleX * clickForce * 42 * p.depth * clickImpact;
+            targetY += angleY * clickForce * 42 * p.depth * clickImpact;
+          }
+        }
+
+        const easeFactor = hoverForce > 0 || clickImpact > 0 ? 0.09 : 0.04;
+        p.x += (targetX - p.x) * easeFactor;
+        p.y += (targetY - p.y) * easeFactor;
+      });
+
+      if (mouse.x !== null && mouse.y !== null && radius > 0) {
+        const closeParticles = particles.filter(p => {
+          const dx = p.x - mouse.x!;
+          const dy = p.y - mouse.y!;
+          return dx * dx + dy * dy < radius * radius;
+        });
+
+        for (let i = 0; i < closeParticles.length; i++) {
+          const p1 = closeParticles[i];
+          const dMouse1 = Math.sqrt((p1.x - mouse.x) ** 2 + (p1.y - mouse.y) ** 2);
+          const f1 = (radius - dMouse1) / radius;
+
+          for (let j = i + 1; j < closeParticles.length; j++) {
+            const p2 = closeParticles[j];
+            const dx = p1.x - p2.x;
+            const dy = p1.y - p2.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            const maxLineDist = 80;
+
+            if (dist < maxLineDist) {
+              const dMouse2 = Math.sqrt((p2.x - mouse.x) ** 2 + (p2.y - mouse.y) ** 2);
+              const f2 = (radius - dMouse2) / radius;
+              const combinedForce = f1 * f2;
+              const proximityOpacity = (1 - dist / maxLineDist) * 0.12 * combinedForce;
+
+              ctx.beginPath();
+              ctx.moveTo(p1.x, p1.y);
+              ctx.lineTo(p2.x, p2.y);
+              ctx.strokeStyle = `${lineColor}${proximityOpacity})`;
+              ctx.lineWidth = 0.5;
+              ctx.stroke();
+            }
+          }
+        }
+      }
+
+      particles.forEach(p => {
+        let hoverForce = 0;
+        if (mouse.x !== null && mouse.y !== null && radius > 0) {
+          const dx = p.x - mouse.x;
+          const dy = p.y - mouse.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < radius) {
+            hoverForce = (radius - dist) / radius;
+          }
+        }
+
+        const size = p.size * (1 + hoverForce * 0.5);
+        const opacity = p.baseOpacity + (1 - p.baseOpacity) * hoverForce * 0.4;
+        
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, size, 0, Math.PI * 2);
+
+        if (hoverForce > 0.05) {
+          ctx.save();
+          ctx.shadowBlur = hoverForce * 10 * p.depth;
+          ctx.shadowColor = `${glowColor}${hoverForce * 0.8})`;
+          ctx.fillStyle = `${particleColor}${opacity})`;
+          ctx.fill();
+          ctx.restore();
+        } else {
+          ctx.fillStyle = `${particleColor}${opacity})`;
+          ctx.fill();
+        }
+      });
+
+      animationFrameId = requestAnimationFrame(loop);
+    };
+
+    animationFrameId = requestAnimationFrame(loop);
+
+    return () => {
+      window.removeEventListener("resize", resize);
+      if (section) {
+        section.removeEventListener("mousemove", handleMouseMove);
+        section.removeEventListener("mouseleave", handleMouseLeave);
+        section.removeEventListener("click", handleClick);
+      }
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none flex items-center justify-center">
-      <motion.div
-        className="absolute"
-        style={{ width: "150vw", height: "150vw", minWidth: "1200px", minHeight: "1200px" }}
-        animate={{ rotate: 360 }}
-        transition={{ duration: 180, repeat: Infinity, ease: "linear" }}
-      >
-        {STARS.map((star) => (
-          <motion.div
-            key={star.i}
-            className="absolute rounded-full bg-[#191919] dark:bg-white dark:shadow-[0_0_6px_rgba(255,255,255,0.8)] shadow-[0_0_6px_rgba(0,0,0,0.1)]"
-            style={{
-              width: star.size,
-              height: star.size,
-              left: `${star.x}%`,
-              top: `${star.y}%`,
-            }}
-            animate={{
-              opacity: [0.4, 1, 0.4]
-            }}
-            transition={{
-              duration: star.duration,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: star.delay,
-            }}
-          />
-        ))}
-      </motion.div>
+    <div ref={containerRef} className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+      <canvas ref={canvasRef} className="absolute inset-0 block w-full h-full" />
     </div>
   );
 }
-
 
 export function HeroSection() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -95,7 +371,7 @@ export function HeroSection() {
 
   return (
     <section id="home" className="relative min-h-[100dvh] overflow-hidden">
-      <RevolvingStars />
+      <InteractiveConstellation />
 
       {/* Header — fixed so logo + menu stay sticky on top across the whole page */}
       <header
