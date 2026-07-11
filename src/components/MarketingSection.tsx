@@ -1,15 +1,17 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Check, Clock3, Menu, Megaphone, RefreshCw } from "lucide-react";
 import TaxCalculator from "./TaxCalculator";
-const leads = [
-  ["Paul", "Contacted", "paul.bj@gmail.com"],
-  ["Mike", "Tour Complete", "mike.t90@hotmail.com"],
-  ["Anna", "Contacted", "anna.jones@gmail.com"],
-  ["Jane", "Enrolled", "jane.martin@outlook.com"],
-  ["Nora", "Contacted", "nora1231@gmail.com"],
-  ["Autumn", "Contacted", "autumn_sct@gmail.com"],
+
+const initialLeads = [
+  { name: "Paul", stage: "Contacted", email: "paul.bj@gmail.com", checked: false },
+  { name: "Mike", stage: "Tour Complete", email: "mike.t90@hotmail.com", checked: false },
+  { name: "Anna", stage: "Contacted", email: "anna.jones@gmail.com", checked: false },
+  { name: "Jane", stage: "Enrolled", email: "jane.martin@outlook.com", checked: false },
+  { name: "Nora", stage: "Contacted", email: "nora1231@gmail.com", checked: false },
+  { name: "Autumn", stage: "Contacted", email: "autumn_sct@gmail.com", checked: false },
 ];
 
 function PaperNote({ quote, author }: { quote: string; author: string }) {
@@ -68,6 +70,22 @@ function PaperNote({ quote, author }: { quote: string; author: string }) {
   );
 }
 function LeadTable() {
+  const [leadData, setLeadData] = useState(initialLeads);
+
+  const toggleCheck = (index: number) => {
+    const newData = [...leadData];
+    newData[index].checked = !newData[index].checked;
+    setLeadData(newData);
+  };
+
+  const cycleStage = (index: number) => {
+    const stages = ["Contacted", "Tour Complete", "Enrolled"];
+    const newData = [...leadData];
+    const currentIdx = stages.indexOf(newData[index].stage);
+    newData[index].stage = stages[(currentIdx + 1) % stages.length];
+    setLeadData(newData);
+  };
+
   return (
     <div className="w-full overflow-hidden rounded-[6px] bg-white shadow-[0_14px_28px_rgba(28,22,12,0.10)]">
       <div className="grid grid-cols-[0.35fr_0.8fr_1fr_1.45fr] px-4 py-3 text-xs text-[#b0aca5]">
@@ -76,25 +94,40 @@ function LeadTable() {
         <span>Lead stage</span>
         <span>Email</span>
       </div>
-      {leads.map(([name, stage, email]) => (
+      {leadData.map((lead, index) => (
         <div
-          className="grid grid-cols-[0.35fr_0.8fr_1fr_1.45fr] items-center border-t border-[#eee9df] px-4 py-3 text-xs"
-          key={name}
+          className="grid grid-cols-[0.35fr_0.8fr_1fr_1.45fr] items-center border-t border-[#eee9df] px-4 py-3 text-xs transition-colors hover:bg-gray-50/50 cursor-pointer"
+          key={lead.name}
+          onClick={() => cycleStage(index)}
         >
-          <span className="size-3 rounded-[3px] border border-[#d9d4ca]" />
-          <span className="text-[#7c776f]">{name}</span>
-          <span
-            className={`w-fit rounded px-2 py-1 font-medium ${
-              stage === "Enrolled"
-                ? "bg-[#e6f8ed] text-[#27a867]"
-                : stage === "Tour Complete"
-                  ? "bg-[#fff0e8] text-[#ff684d]"
-                  : "bg-[#f0eee9] text-[#8b857c]"
-            }`}
+          <div 
+            className="flex h-full items-center cursor-pointer"
+            onClick={(e) => {
+              e.stopPropagation();
+              toggleCheck(index);
+            }}
           >
-            {stage}
-          </span>
-          <span className="truncate text-[#aaa49b]">{email}</span>
+            <div className={`size-3.5 rounded-[3px] border flex items-center justify-center transition-colors ${
+              lead.checked ? 'bg-[#ff684d] border-[#ff684d]' : 'border-[#d9d4ca] bg-white'
+            }`}>
+              {lead.checked && <Check size={10} className="text-white" />}
+            </div>
+          </div>
+          <span className="text-[#7c776f] text-[13px]">{lead.name}</span>
+          <div className="flex items-center">
+            <div
+              className={`w-[76px] rounded-[4px] px-2 py-1.5 text-left font-medium leading-[1.1] transition-colors ${
+                lead.stage === "Enrolled"
+                  ? "bg-[#e6f8ed] text-[#27a867]"
+                  : lead.stage === "Tour Complete"
+                    ? "bg-[#fff0e8] text-[#ff684d]"
+                    : "bg-[#f0eee9] text-[#8b857c]"
+              }`}
+            >
+              {lead.stage}
+            </div>
+          </div>
+          <span className="truncate text-[#aaa49b]">{lead.email}</span>
         </div>
       ))}
     </div>
@@ -129,6 +162,12 @@ function WebsitePreview() {
     "NPS Benefits",
   ];
 
+  const [checkedItems, setCheckedItems] = useState<Record<string, boolean>>({});
+
+  const toggleItem = (item: string) => {
+    setCheckedItems((prev) => ({ ...prev, [item]: !prev[item] }));
+  };
+
   return (
     <div className="mx-auto mt-9 w-full max-w-[250px] overflow-hidden rounded-[14px] border-[6px] border-[#e7e1d6] bg-white">
       <div className="px-4 py-4">
@@ -144,9 +183,15 @@ function WebsitePreview() {
           {checklist.map((item) => (
             <div
               key={item}
-              className="flex items-center gap-2 rounded-md border border-[#ece7dd] px-3 py-2"
+              className="flex items-center gap-2 rounded-md border border-[#ece7dd] px-3 py-2 cursor-pointer transition-colors hover:bg-gray-50"
+              onClick={() => toggleItem(item)}
             >
-              <input type="checkbox" className="h-3 w-3" />
+              <input 
+                type="checkbox" 
+                className="h-3 w-3 cursor-pointer" 
+                checked={!!checkedItems[item]}
+                onChange={() => {}} 
+              />
               <span className="text-xs font-medium">{item}</span>
             </div>
           ))}
@@ -198,6 +243,19 @@ function TaxChecklistCard() {
     "NPS Benefits",
   ];
 
+  const [checkedItems, setCheckedItems] = useState<Record<string, boolean>>({
+    "Invest in 80C": true,
+    "Claim HRA": true,
+    "Health Insurance": true,
+    "NPS Benefits": false,
+  });
+
+  const toggleItem = (item: string) => {
+    setCheckedItems((prev) => ({ ...prev, [item]: !prev[item] }));
+  };
+
+  const completedCount = Object.values(checkedItems).filter(Boolean).length;
+
   return (
     <div className="rounded-[6px] bg-white p-5 shadow-[0_10px_24px_rgba(28,22,12,0.08)] w-full max-w-[280px] lg:w-[280px]">
       <div className="flex items-center justify-between">
@@ -211,18 +269,25 @@ function TaxChecklistCard() {
       </div>
 
       <div className="mt-5 space-y-4">
-        {items.map((item) => (
-          <div key={item} className="flex items-center gap-3 text-sm">
-            <span className="grid size-5 shrink-0 place-items-center rounded bg-green-500 text-white">
-              ✓
-            </span>
-            {item}
-          </div>
-        ))}
+        {items.map((item) => {
+          const isChecked = !!checkedItems[item];
+          return (
+            <div 
+              key={item} 
+              className="flex items-center gap-3 text-sm cursor-pointer transition-opacity hover:opacity-80"
+              onClick={() => toggleItem(item)}
+            >
+              <div className={`grid size-5 shrink-0 place-items-center rounded transition-colors ${isChecked ? 'bg-green-500 text-white' : 'border border-[#e7e1d6] bg-white'}`}>
+                {isChecked && <Check size={12} />}
+              </div>
+              <span className={isChecked ? 'text-[#706b62]' : 'text-[#a7a195] line-through'}>{item}</span>
+            </div>
+          );
+        })}
       </div>
 
       <div className="mt-6 rounded bg-gray-100 p-3 text-xs text-gray-700 dark:bg-gray-800 dark:text-gray-200">
-        3 / 4 tasks completed
+        {completedCount} / {items.length} tasks completed
       </div>
     </div>
   );
