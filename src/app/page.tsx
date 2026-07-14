@@ -1,7 +1,6 @@
 import { CommunitySection } from "@/components/CommunitySection";
-import { ContactSection } from "@/components/ContactSection";
+import { ContactFooterSection } from "@/components/ContactFooterSection";
 import { FAQSection } from "@/components/FAQSection";
-import { FooterSection } from "@/components/FooterSection";
 import { FounderNoteSection } from "@/components/FounderNoteSection";
 import { HeroSection } from "@/components/HeroSection";
 import { LogoStripSection } from "@/components/LogoStripSection";
@@ -22,8 +21,7 @@ export default function Home() {
       <FounderNoteSection />
       <TestimonialsSection />
       <FAQSection />
-      <ContactSection />
-      <FooterSection />
+      <ContactFooterSection />
     </main>
   );
 }

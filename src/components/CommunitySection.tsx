@@ -61,20 +61,26 @@ const metrics = [
 
 const cards = [
   {
-    title: "Founder-led. Built with operators.",
+    title: "Meet the Chartered Accountant Behind Your Financial Growth",
     name: "CA Sagar Gotawala",
     role: "Co-Founder",
     image: "/sagar.png",
-    desc:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    paragraphs: [
+      "At SNAP & Associates, every client relationship is built on trust, transparency, and practical financial advice.",
+      "Founded by CA Sagar Gotawala, the firm combines technical expertise with a business-first approach to help companies stay compliant, reduce tax burdens, and make confident financial decisions.",
+      "Rather than offering one-size-fits-all solutions, we take the time to understand your business and provide personalized strategies that support long-term growth.",
+      "Whether you're launching a startup, managing a growing enterprise, or planning your personal finances, we're committed to becoming your trusted financial partner."
+    ]
   },
   {
-    title: "Strategic vision. Trusted advice.",
+    title: "Strategic Vision. Trusted Financial Guidance.",
     name: "CA Aakash Bagrecha",
     role: "Co-Founder",
     image: "/aakash.png",
-    desc:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    paragraphs: [
+      "At SNAP & Associates, CA Aakash Bagrecha brings a forward-thinking approach to financial management, helping businesses navigate challenges with confidence. With expertise in taxation, audit, financial advisory, and business compliance, he focuses on delivering practical solutions that support long-term growth.",
+      "His commitment to accuracy, transparency, and personalized service ensures that every client receives strategic advice tailored to their unique financial goals. From startups to established enterprises, he works closely with clients to build stronger businesses through informed financial decisions."
+    ]
   },
 ];
 
@@ -132,10 +138,10 @@ export function CommunitySection() {
             >
 
 
-              <div className="grid gap-8 md:grid-cols-[minmax(280px,350px)_1fr] md:gap-[64px]">
+              <div className="grid gap-8 md:grid-cols-[minmax(280px,350px)_1fr] md:gap-[64px] items-center">
 
                 {/* Dynamic Image */}
-                <div className="mx-auto w-full sm:max-w-sm md:max-w-none overflow-hidden rounded-2xl bg-[#c7a78e] shadow-lg">
+                <div className="mx-auto w-full sm:max-w-sm md:max-w-none aspect-[3/4] max-h-[450px] overflow-hidden rounded-2xl bg-[#c7a78e] shadow-lg">
                   <Image
                     src={cards[activeCard].image}
                     alt={cards[activeCard].name}
@@ -147,13 +153,15 @@ export function CommunitySection() {
 
                 {/* Content */}
                 <article className="rounded-2xl p-4 sm:p-6 md:p-8 flex flex-col h-full">
-                  <h3 className="text-[24px] sm:text-[30px] font-semibold text-[#191919] dark:text-white">
+                  <h3 className="text-[24px] sm:text-[30px] font-semibold text-[#191919] dark:text-white leading-tight">
                     {cards[activeCard].title}
                   </h3>
 
-                  <p className="mt-6 text-sm sm:text-base leading-relaxed text-[#191919]/80 dark:text-gray-300 line-clamp-4 sm:line-clamp-5">
-                    {cards[activeCard].desc}
-                  </p>
+                  <div className="mt-5 space-y-3 text-sm sm:text-base leading-relaxed text-[#191919]/80 dark:text-gray-300">
+                    {cards[activeCard].paragraphs.map((p, i) => (
+                      <p key={i}>{p}</p>
+                    ))}
+                  </div>
 
                   <div className="mt-auto pt-8 sm:pt-12 text-right">
                     <p
